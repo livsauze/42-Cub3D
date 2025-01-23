@@ -28,8 +28,8 @@ typedef struct s_mlx
 	void *mlx;
 	void *img;
 	int		bits_per_pixel;
-	int		line_len;
 	int		endian;
+	int		line_len;
 }				t_mlx;
 
 
