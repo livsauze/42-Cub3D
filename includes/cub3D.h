@@ -7,12 +7,31 @@
 # include <math.h>
 # include <libft.h>
 # include <fcntl.h>
+# include <X11/keysym.h>
+# include <X11/X.h>
+# include "../minilibx-linux/mlx.h"
+
+# define WIDTH 800
+# define HEIGHT 800
 
 typedef struct s_map
 {
 	int	err;
 	int	fd;
 }	t_map;
+
+typedef struct s_mlx
+{
+	char *name;
+	char *addr;
+	void *window;
+	void *mlx;
+	void *img;
+	int		bits_per_pixel;
+	int		line_len;
+	int		endian;
+}				t_mlx;
+
 
 /*************************************INIT*************************************/
 t_map	*ft_init_struct(char *file);
@@ -25,4 +44,16 @@ int ft_check_ext(char *file);
 /*************************************UTILS*************************************/
 int	ft_err(char *str);
 void	ft_free_tab(char **str);
+
+
+
+
+
+// /////////////////  mlx ///////////////// //
+
+void	ft_window_init(t_mlx *mlx);
+void	ft_malloc_error(void);
+int     no_event(t_mlx *mlx);
+
+
 #endif
