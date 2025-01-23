@@ -1,4 +1,4 @@
-#include "../includes/main.h"
+#include "../includes/cub3D.h"
 
 int	ft_err(char *str)
 {
@@ -6,4 +6,9 @@ int	ft_err(char *str)
 	while (*str)
 		write(2, str++, 1);
 	return (1);
+}
+
+void	ft_end(t_map *map)
+{
+	free(map);
 }

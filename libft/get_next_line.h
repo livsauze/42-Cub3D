@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/06 08:32:09 by livsauze          #+#    #+#             */
-/*   Updated: 2025/01/23 16:44:56 by livsauze         ###   ########.fr       */
+/*   Created: 2023/11/17 12:40:45 by livsauze          #+#    #+#             */
+/*   Updated: 2025/01/23 16:50:03 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-int	ft_memcmp(const void *s1, const void *s2, int n)
-{
-	unsigned const char		*tab1;
-	unsigned const char		*tab2;
-	unsigned int			i;
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
 
-	tab1 = s1;
-	tab2 = s2;
-	i = 0;
-	while (i < (unsigned int)n)
-	{
-		if (tab1[i] != tab2[i])
-			return (tab1[i] - tab2[i]);
-		i++;
-	}
-	return (0);
-}
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 5
+# endif
+
+#endif

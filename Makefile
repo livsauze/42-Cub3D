@@ -10,40 +10,47 @@ LINK = -Llibft -lft -lXext -lX11 -lm
 
 MLX_PATH = minilibx-linux/
 MLX_NAME = libmlx.a
-MLX = ${MLX_PATH}${MLX_NAME}
+MLX = $(MLX_PATH)$(MLX_NAME)
 INC =   -I ./include/\
 				-I ./libft/\
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 
 SRCS_DIR = src
-SRCS =  src/main.c src/error.c
+SRCS =  $(wildcard $(SRCS_DIR)/*.c) \
+		$(wildcard $(SRCS_DIR)/utils/*.c) \
+		$(wildcard $(SRCS_DIR)/parsing/*.c) \
+		$(wildcard $(SRCS_DIR)/init/*.c) 
 OBJS_DIR := obj
 OBJS = $(patsubst $(SRCS_DIR)/%.c, $(OBJS_DIR)/%.o, $(SRCS))
 
-$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
-	@mkdir -p $(OBJS_DIR)
-	@${CC} ${CFLAGS} ${INC} -c $< -o $@
 
-${NAME} : ${OBJS}
+all : $(NAME)
+
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+
+$(NAME) : $(OBJS)
 	@echo "$(YELLOW)...Compiling...\n"
-	@make -sC ${MLX_PATH}
+	@make -sC $(MLX_PATH)
 	@make -C libft/
-	@${CC} ${CFLAGS} ${INC} ${OBJS} ${MLX} ${LINK} -o ${NAME}
+	@$(CC) $(CFLAGS) $(INC) $(OBJS) $(MLX) $(LINK) -o $(NAME)
 	@echo "$(GREEN) Compilation OK ✅"
-all : ${NAME}
+
 
 clean :
-	@rm -rf ${OBJS_DIR}
+	@rm -rf $(OBJS_DIR)
 	@make clean -C libft/
-	@make -C ${MLX_PATH} clean
+	@make -C $(MLX_PATH) clean
 	@echo "$(RED)Deleting object files\n"
 
 
 fclean : clean
 	@make fclean -C libft/
-	@rm -f ${NAME}
+	@rm -f $(NAME)
 	@echo "$(RED)Deleting executable\n"
 
 re : fclean all

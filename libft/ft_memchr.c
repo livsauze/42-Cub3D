@@ -6,16 +6,16 @@
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:42:55 by livsauze          #+#    #+#             */
-/*   Updated: 2024/11/05 13:57:33 by livsauze         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:44:51 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+void	*ft_memchr(const void *s, int c, int n)
 {
 	const char	*str;
-	size_t		i;
+	int		i;
 
 	str = s;
 	i = 0;
