@@ -6,16 +6,16 @@
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 12:33:03 by livsauze          #+#    #+#             */
-/*   Updated: 2024/11/05 13:56:43 by livsauze         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:44:31 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	*ft_calloc(int nmemb, int size)
 {
 	void	*s;
-	size_t	len;
+	int	len;
 
 	len = nmemb * size;
 	//if ((len / nmemb) != size)

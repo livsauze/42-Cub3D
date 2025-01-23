@@ -6,18 +6,18 @@
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 15:41:53 by livsauze          #+#    #+#             */
-/*   Updated: 2024/11/05 13:58:53 by livsauze         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:45:45 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dest, const char *src, size_t size)
+int	ft_strlcat(char *dest, const char *src, int size)
 {
-	size_t	i;
-	size_t	j;
-	size_t	lend;
-	size_t	lens;
+	int	i;
+	int	j;
+	int	lend;
+	int	lens;
 
 	lend = ft_strlen(dest);
 	lens = ft_strlen(src);

@@ -6,16 +6,16 @@
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 11:42:48 by livsauze          #+#    #+#             */
-/*   Updated: 2024/11/05 13:56:38 by livsauze         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:44:24 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	ft_bzero(void *s, int n)
 {
 	char	*temp;
-	size_t	i;
+	int	i;
 
 	temp = s;
 	i = 0;
