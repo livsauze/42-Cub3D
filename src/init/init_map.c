@@ -22,7 +22,6 @@ t_map	*ft_clean_init(t_map *map)
 t_map	*ft_init_struct(char *file)
 {
 	t_map	*map;
-	// t_mlx	mlx;
 
 	map = malloc(sizeof(t_map));
 	ft_clean_init(map);
@@ -30,14 +29,5 @@ t_map	*ft_init_struct(char *file)
 	if (map->fd < 0)
 		return (printf("%s\n", "Error\nCannot open file"), map->err = 2, map);
 	ft_get_map(map);
-
-
-
-
-
-	// mlx.name = "Cub3d"; 
-	// ft_window_init(&mlx);
-	// mlx_loop_hook(mlx.mlx, &no_event, &mlx);
-	// mlx_loop(mlx.mlx);
 	return (map);
 }

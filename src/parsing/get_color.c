@@ -15,10 +15,7 @@ void	ft_get_F(t_map *map, char *line, int i)
 	tmp = ft_split(line + i + 1, ',');
 	j = -1;
 	while (++j < 3)
-	{
 		map->floor[j] = ft_atoi(tmp[j]);
-		printf("floor[j] = %d\n", map->floor[j]);
-	}
 	ft_free_tab(tmp);
 	return ;
 }
@@ -38,10 +35,7 @@ void	ft_get_C(t_map *map, char *line, int i)
 	tmp = ft_split(line + i + 1, ',');
 	j = -1;
 	while (++j < 3)
-	{
 		map->ceiling[j] = ft_atoi(tmp[j]);
-		printf("ceiling[j] = %d\n", map->ceiling[j]); 
-	}
 	ft_free_tab(tmp);
 	return ;
 }
