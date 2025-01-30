@@ -1,4 +1,4 @@
-#include "../includes/cub3D.h"
+#include "../../includes/cub3D.h"
 
 int	ft_err(char *str)
 {
@@ -8,7 +8,21 @@ int	ft_err(char *str)
 	return (1);
 }
 
+void	ft_free_all(t_map *map)
+{
+	if (map->so)
+		free(map->so);
+	if (map->no)
+		free(map->no);
+	if (map->we)
+		free(map->we);
+	if (map->ea)
+		free(map->ea);
+}
+
+
 void	ft_end(t_map *map)
 {
-	free(map);
+	ft_free_all(map);
+	// free(map);
 }
