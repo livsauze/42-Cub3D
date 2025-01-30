@@ -10,7 +10,8 @@ int	main(int ac, char **av)
 	map = ft_init_struct(av[1]);
 	if (map->err > 0)			
 		return (ft_end(map), ft_err(""));
+
 	ft_start_game(map);
-	ft_end(map);
+	// ft_end(map);
 	return (0);
 }
