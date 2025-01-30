@@ -35,5 +35,6 @@ void	ft_window_init(t_mlx *mlx)
 	}
 	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bits_per_pixel,
 			&mlx->line_len, &mlx->endian);
+	ft_events_init(mlx);
 }
 

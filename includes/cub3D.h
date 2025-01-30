@@ -49,11 +49,18 @@ void	ft_free_tab(char **str);
 
 
 
-// /////////////////  mlx ///////////////// //
+// //////////////////////////////////  mlx ////////////////////////////////// //
 
 void	ft_window_init(t_mlx *mlx);
 void	ft_malloc_error(void);
 int     no_event(t_mlx *mlx);
+
+// //////////////////////////////////  events ////////////////////////////////// //
+
+int	ft_close_handler(t_mlx *mlx);
+void	ft_events_init(t_mlx *mlx);
+int	ft_key_handler(int keysym, t_mlx *mlx);
+
 
 
 #endif
