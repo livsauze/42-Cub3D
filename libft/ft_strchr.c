@@ -6,7 +6,7 @@
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:42:40 by livsauze          #+#    #+#             */
-/*   Updated: 2024/11/05 13:58:35 by livsauze         ###   ########.fr       */
+/*   Updated: 2025/01/24 15:27:47 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strchr(const char *s, int c)
 	int	i;
 
 	i = 0;
+	if (!s)
+		return (NULL);
 	while (s[i] && s[i] != (char)c)
 	{
 		i++;

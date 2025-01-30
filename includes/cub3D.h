@@ -18,6 +18,12 @@ typedef struct s_map
 {
 	int	err;
 	int	fd;
+	int ceiling[3];
+	int	floor[3];
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
 }	t_map;
 
 typedef struct s_mlx
@@ -40,6 +46,15 @@ void	ft_end(t_map *map);
 
 /*************************************CHECK*************************************/
 int ft_check_ext(char *file);
+
+
+/*************************************GET_MAP*************************************/
+t_map	*ft_get_map(t_map *map);
+void	ft_get_color(t_map *map, char *line);
+void	ft_get_SO(t_map *map, char *line, int i);
+void	ft_get_NO(t_map *map, char *line, int i);
+void	ft_get_WE(t_map *map, char *line, int i);
+void	ft_get_EA(t_map *map, char *line, int i);
 
 /*************************************UTILS*************************************/
 int	ft_err(char *str);

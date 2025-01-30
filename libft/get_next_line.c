@@ -6,11 +6,12 @@
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 12:42:33 by livsauze          #+#    #+#             */
-/*   Updated: 2023/12/18 12:34:35 by livsauze         ###   ########.fr       */
+/*   Updated: 2025/01/24 15:52:51 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "libft.h"
 
 char	*ft_read(int fd, char *buf, char *stash)
 {
@@ -82,40 +83,4 @@ char	*get_next_line(int fd)
 	line = ft_get_line(stash);
 	stash = ft_clean_stash(stash);
 	return (line);
-}
-
-int	main(void)
-{
-	int	fd;
-	char *line;
-
-	fd = open(0, O_RDONLY);
-
-	line = get_next_line(fd);
-	printf("ligne 1 : %s\n", line);
-	free(line);
-	line = NULL;
-	
-	line = get_next_line(fd);
-	printf("ligne 2 : %s\n", line);
-	free(line);
-	line = NULL;
-	
-	line = get_next_line(fd);
-	printf("ligne 3 : %s", line);
-	free(line);
-	line = NULL;
-
-	line = get_next_line(fd);
-	printf("ligne 4 : %s", line);
-	free(line);
-	line = NULL;
-
-	line = get_next_line(fd);
-	printf("ligne 5 : %s", line);
-	free(line);
-	line = NULL;
-	
-	close(fd);
-	return (0);
 }
