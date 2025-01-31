@@ -1,11 +1,11 @@
 #include "../../includes/cub3D.h"
 
-int	ft_err(char *str)
+void	ft_err(char *str, t_map *map)
 {
+	map->err = 1;
 	write(2, "Error\n", 6);
 	while (*str)
 		write(2, str++, 1);
-	return (1);
 }
 
 void	ft_free_all(t_map *map)

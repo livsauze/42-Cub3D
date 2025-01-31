@@ -5,13 +5,13 @@ void	ft_get_F(t_map *map, char *line, int i)
 	char	**tmp;
 	int		j;
 
-	while (line[i] && (line[i] == '\t' || line[i] == ' '))
-		i++;
-	if (!line[i])
+	if (map->floor[0] != -1)
 	{
-		map->err = 1;
+		ft_err("You have more than 1 declaration of floor color\n", map);
 		return ;
 	}
+	while (line[i] && (line[i] == '\t' || line[i] == ' '))
+		i++;
 	tmp = ft_split(line + i + 1, ',');
 	j = -1;
 	while (++j < 3)
@@ -25,13 +25,13 @@ void	ft_get_C(t_map *map, char *line, int i)
 	char	**tmp;
 	int		j;
 
-	while (line[i] && (line[i] == '\t' || line[i] == ' '))
-		i++;
-	if (!line[i])
+	if (map->ceiling[0] != -1)
 	{
-		map->err = 1;
+		ft_err("You have more than 1 declaration of ceiling color\n", map);
 		return ;
 	}
+	while (line[i] && (line[i] == '\t' || line[i] == ' '))
+		i++;
 	tmp = ft_split(line + i + 1, ',');
 	j = -1;
 	while (++j < 3)
@@ -45,8 +45,6 @@ void	ft_get_color(t_map *map, char *line)
 	int	i;
 
 	i = 0;
-	if (!line)
-		return ;
 	while (line[i] && (line[i] == '\t' || line[i] == ' '))
 		i++;
 	while (line[i] && map->err == 0)

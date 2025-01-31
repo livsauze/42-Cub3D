@@ -28,7 +28,7 @@ t_map	*ft_init_struct(char *file)
 	ft_clean_init(map);
 	map->fd = open(file, O_RDONLY);
 	if (map->fd < 0)
-		return (printf("%s\n", "Error\nCannot open file"), map->err = 2, map);
+		return (ft_err("Cannot open file\n", map), map);
 	ft_get_map(map);
 	return (map);
 }
