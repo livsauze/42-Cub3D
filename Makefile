@@ -21,7 +21,8 @@ SRCS_DIR = src
 SRCS =  $(wildcard $(SRCS_DIR)/*.c) \
 		$(wildcard $(SRCS_DIR)/utils/*.c) \
 		$(wildcard $(SRCS_DIR)/parsing/*.c) \
-		$(wildcard $(SRCS_DIR)/init/*.c) 
+		$(wildcard $(SRCS_DIR)/init/*.c) \
+		$(wildcard $(SRCS_DIR)/ray_casting/*.c) 
 OBJS_DIR := obj
 OBJS = $(patsubst $(SRCS_DIR)/%.c, $(OBJS_DIR)/%.o, $(SRCS))
 
