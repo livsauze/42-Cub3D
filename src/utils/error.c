@@ -18,11 +18,13 @@ void	ft_free_all(t_map *map)
 		free(map->we);
 	if (map->ea)
 		free(map->ea);
+	if (map->map)
+		ft_free_tab(map->map);
 }
 
 
 void	ft_end(t_map *map)
 {
 	ft_free_all(map);
-	// free(map);
+	close(map->fd);
 }

@@ -16,6 +16,7 @@ t_map	*ft_clean_init(t_map *map)
 		map->ceiling[i] = -1;
 		map->floor[i] = -1;
 	}
+	map->map = NULL;
 	map->mlx = NULL;
 	return (map);
 }

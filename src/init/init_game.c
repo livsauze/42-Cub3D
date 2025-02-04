@@ -6,5 +6,4 @@ void	ft_start_game(t_map *map)
 	ft_init_mlx(map);
 
 	
-	// printf("%s\n", "it's working!!!");
 }

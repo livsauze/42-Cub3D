@@ -32,6 +32,7 @@ typedef struct s_map
 	int	fd;
 	int ceiling[3];
 	int	floor[3];
+	char	**map;
 	char	*no;
 	char	*so;
 	char	*we;
@@ -58,7 +59,7 @@ void	ft_get_text(t_map *map, char *line);
 /*************************************UTILS*************************************/
 void	ft_err(char *str, t_map *map);
 void	ft_free_tab(char **str);
-
+int	ft_empty_line(char *str);
 
 
 
