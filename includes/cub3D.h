@@ -37,9 +37,13 @@ typedef struct s_player
 
 typedef	struct s_ray
 {
+	double camera_x; // relative position of a column pixel on the screen
+	
+	double	ray_dir_x; // direction of the ray
+	double	ray_dir_y;
 	double	plane_x; // x position of the plane (camera), plane is perpandicular to the direction of the payer
 	double	plane_y;
-	int		curr_ray_x; // Position of the current ray cast. it's an int have the cell of the current ray (map_x)
+	int		curr_ray_x; // Position of the current ray cast. it's an int who have the cell of the current ray (map_x)
 	int		curr_ray_y; // (map_y)
 }				t_ray;
 
@@ -83,20 +87,26 @@ int	ft_err(char *str);
 void	ft_free_tab(char **str);
 
 
+// //////////////////////////////////    					////////////////////////////////// //
+									 // Ray casting part //
+// //////////////////////////////////   					 ////////////////////////////////// //
 
 
 
-// //////////////////////////////////  mlx ////////////////////////////////// //
+// //////////////////////////////////  mlx  ////////////////////////////////// //
 
 void	ft_window_init(t_map *map);
 void	ft_malloc_error(void);
 
-// //////////////////////////////////  events ////////////////////////////////// //
+// //////////////////////////////////  events  ////////////////////////////////// //
 
 int	ft_close_handler(t_map *map);
 void	ft_events_init(t_map *map);
 int	ft_key_handler(int keysym, t_map *map);
 
+// //////////////////////////////////  ray  ////////////////////////////////// //
+
+void	ray_casting(t_ray *ray, t_player *player);
 
 
 #endif
