@@ -39,10 +39,16 @@ typedef	struct s_ray
 {
 	double camera_x; // relative position of a column pixel on the screen
 	
-	double	ray_dir_x; // direction of the ray
+	double	ray_dir_x; // constant variable. direction of the ray
 	double	ray_dir_y;
+	int		step_x; // constant variable. Direction of the square who need to go. 2 values => -1 and 1 (for left and right)
+	int		step_y; // 2 values -1 and 1 for (low and high)
 	double	plane_x; // x position of the plane (camera), plane is perpandicular to the direction of the payer
 	double	plane_y;
+	double	side_dist_x; // initialy distance (base on player position) of the ray must travel to the next vertical line of the square
+	double	side_dist_y; 
+	double	delta_dist_x; // constant variable. distance (base between 2 vertical ligne of the square) between 2 square of the grid (map) in x side (allow to increment side_x)
+	double	delta_dist_y;
 	int		curr_ray_x; // Position of the current ray cast. it's an int who have the cell of the current ray (map_x)
 	int		curr_ray_y; // (map_y)
 }				t_ray;
@@ -107,6 +113,8 @@ int	ft_key_handler(int keysym, t_map *map);
 // //////////////////////////////////  ray  ////////////////////////////////// //
 
 void	ray_casting(t_ray *ray, t_player *player);
+void	dda_algo(t_ray *ray, t_player *player);
+void	initial_distance(t_ray *ray, t_player *player);
 
 
 #endif
