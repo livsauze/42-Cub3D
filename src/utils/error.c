@@ -26,5 +26,7 @@ void	ft_free_all(t_map *map)
 void	ft_end(t_map *map)
 {
 	ft_free_all(map);
+	if (map->player)
+		free(map->player);
 	close(map->fd);
 }

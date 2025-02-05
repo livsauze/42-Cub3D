@@ -16,9 +16,30 @@ int	ft_ismap(char *line)
 
 void	ft_check_map(t_map *map)
 {
-	int	i = -1;
-	while (map->map[++i])
-		printf("TEST MAP : %s\n", map->map[i]);
+	int	x;
+	int	y;
+	int	player;
+
+	player = 0;
+	y = 0;
+	while (map->map[y] && map->err == 0)
+	{
+		x = 0;
+		while (map->map[y][x] && map->err == 0)
+		{
+			if (ft_strrchr("NSEW", map->map[y][x]))
+				player = ft_init_player(map, x, y, player);
+			else if (!ft_strrchr("NSEW01 ", map->map[y][x]))
+				ft_err("Map : invalid character detected\n", map);
+			else if (map->map[y][x] == '0' && ft_map_unclosed(map, x, y))
+				ft_err("Map : unclosed map\n", map);
+			x++;
+		}
+		y++;
+	}
+	if (!player && map->err == 0)
+		ft_err("Map : Need a player, please use N, S, E or W\n", map);
+	return ;
 }
 
 void	ft_parse_map(t_map *map, char *line)

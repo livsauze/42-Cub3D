@@ -18,9 +18,9 @@ t_map	*ft_clean_init(t_map *map)
 	}
 	map->map = NULL;
 	map->mlx = NULL;
+	map->player = NULL;
 	return (map);
 }
-
 t_map	*ft_init_struct(char *file)
 {
 	t_map	*map;

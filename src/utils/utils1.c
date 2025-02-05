@@ -24,3 +24,13 @@ int	ft_empty_line(char *str)
 		return (0);
 	return (1);
 }
+
+int	ft_tab_len(char **str)
+{
+	int	i;
+
+	i = 0;
+	while(str[i])
+		i++;
+	return (i);
+}
