@@ -13,6 +13,7 @@ void init_data(t_map *map)
 	map->ray->curr_ray_y = (int)map->player->pos_y; // cast to int to have the cell of the current ray. exemple if pos_x = 5,7 => ray_x = 5
 	ray->delta_dist_x = fabs(1 / ray_dir_x);
 	ray->delta_dist_y = fabs(1 / ray_dir_y);
+	ray->hit_wall = 0;
 }
 
 void	ft_start_game(t_map *map)

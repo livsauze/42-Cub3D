@@ -51,6 +51,7 @@ typedef	struct s_ray
 	double	delta_dist_y;
 	int		curr_ray_x; // Position of the current ray cast. it's an int who have the cell of the current ray (map_x)
 	int		curr_ray_y; // (map_y)
+	int		hit_wall;
 }				t_ray;
 
 typedef struct s_map
@@ -112,9 +113,10 @@ int	ft_key_handler(int keysym, t_map *map);
 
 // //////////////////////////////////  ray  ////////////////////////////////// //
 
-void	ray_casting(t_ray *ray, t_player *player);
-void	dda_algo(t_ray *ray, t_player *player);
+void	ray_casting(t_ray *ray, t_player *player, t_map *map);
+void	dda_algo(t_ray *ray, t_player *player, t_map *map);
 void	initial_distance(t_ray *ray, t_player *player);
+int	hit_the_wall(t_map *map);
 
 
 #endif

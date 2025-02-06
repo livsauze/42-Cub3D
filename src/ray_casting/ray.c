@@ -6,7 +6,7 @@
 /*   By: estepere <estepere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:45:27 by estepere          #+#    #+#             */
-/*   Updated: 2025/02/05 17:47:52 by estepere         ###   ########.fr       */
+/*   Updated: 2025/02/06 18:50:07 by estepere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,26 +36,34 @@ void	initial_distance(t_ray *ray, t_player *player)
 	}
 }
 
-void	dda_algo(t_ray *ray, t_player *player)
+int	hit_the_wall(t_map *map)
 {
+	
+}
+
+void	dda_algo(t_ray *ray, t_player *player, t_map *map)
+{
+	int	side_wall; // wall is in E/W for 0 and N/S for 1
 	initial_distance(ray, player);
-	while(/*don't touch the wall*/)
+	while(hit_the_wall(ray))
 	{
 		if (ray->side_dist_x < ray->side_dist_y)
 		{
 			ray->side_dist_x += ray->delta_dist_x; // move to x*square of delta_x
 			ray->curr_ray_x += ray->step_x; // update of the curr ray in the grid
+			side_wall = 0
 		}
 		else (ray->side_dist_y < ray->side_dist_x)
 		{
 			ray->side_dist_y += ray->delta_dist_y;
 			ray->curr_ray_y += ray->step_y;
+			side_wall = 1;
 		}
 	}
 }
 
 // start ray display
-void	ray_casting(t_ray *ray, t_player *player)
+void	ray_casting(t_ray *ray, t_player *player, t_map *map)
 {
 	int x;
 
@@ -66,7 +74,7 @@ void	ray_casting(t_ray *ray, t_player *player)
 		ray->camera_x = 2 * x / (double)WIDTH - 1;
 		ray->ray_dir_x = player->dir_x + ray->plane_x * ray->camera_x;
 		ray->ray_dir_y = player->dir_y + ray->plane_y * ray->camera_y;
-		dda_algo(ray, player);
+		dda_algo(ray, player, map);
 		x++;
 	}
 }
