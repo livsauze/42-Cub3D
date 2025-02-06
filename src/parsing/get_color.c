@@ -15,7 +15,11 @@ void	ft_get_F(t_map *map, char *line, int i)
 	tmp = ft_split(line + i + 1, ',');
 	j = -1;
 	while (++j < 3)
+	{
+		if (ft_atoi(tmp[j]) < 0 || ft_atoi(tmp[j]) > 255)
+			ft_err("RGB color invalid\n", map);
 		map->floor[j] = ft_atoi(tmp[j]);
+	}
 	ft_free_tab(tmp);
 	return ;
 }
@@ -35,7 +39,11 @@ void	ft_get_C(t_map *map, char *line, int i)
 	tmp = ft_split(line + i + 1, ',');
 	j = -1;
 	while (++j < 3)
+	{
+		if (ft_atoi(tmp[j]) < 0 || ft_atoi(tmp[j]) > 255)
+			ft_err("RGB color invalid\n", map);
 		map->ceiling[j] = ft_atoi(tmp[j]);
+	}
 	ft_free_tab(tmp);
 	return ;
 }

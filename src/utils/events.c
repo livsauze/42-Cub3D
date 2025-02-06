@@ -12,6 +12,7 @@ int	ft_close_handler(t_map *map)
 		mlx_destroy_display(map->mlx->mlx);
 		free(map->mlx->mlx);
 	}
+	ft_end(map);
 	free(map);
 	exit(EXIT_SUCCESS);
 	return (0);
@@ -27,7 +28,6 @@ int	ft_key_handler(int keysym, t_map *map)
 {
 	if (keysym == XK_Escape)
 	{
-		ft_end(map);
 		ft_close_handler(map);
 	}
 	return (0);

@@ -14,6 +14,13 @@
 # define WIDTH 800
 # define HEIGHT 800
 
+typedef struct s_player
+{
+	int	pos_x;
+	int pos_y;
+}		t_player;
+
+
 typedef struct s_mlx
 {
 	char *name;
@@ -28,15 +35,17 @@ typedef struct s_mlx
 
 typedef struct s_map
 {
-	int	err;
-	int	fd;
-	int ceiling[3];
-	int	floor[3];
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-	t_mlx	*mlx;
+	int			err;
+	int			fd;
+	int 		ceiling[3];
+	int			floor[3];
+	char		**map;
+	char		*no;
+	char		*so;
+	char		*we;
+	char		*ea;
+	t_player	*player;
+	t_mlx		*mlx;
 }	t_map;
 
 
@@ -45,9 +54,12 @@ t_map	*ft_init_struct(char *file);
 void	ft_init_mlx(t_map *map);
 void	ft_start_game(t_map *map);
 void	ft_end(t_map *map);
+int		ft_init_player(t_map *map, int x, int y, int player);
 
 /*************************************CHECK*************************************/
 int ft_check_ext(char *file);
+int	ft_map_unclosed(t_map *map, int x, int y);
+
 
 
 /*************************************GET_MAP*************************************/
@@ -58,8 +70,8 @@ void	ft_get_text(t_map *map, char *line);
 /*************************************UTILS*************************************/
 void	ft_err(char *str, t_map *map);
 void	ft_free_tab(char **str);
-
-
+int	ft_empty_line(char *str);
+int	ft_tab_len(char **str);
 
 
 
