@@ -6,60 +6,64 @@
 /*   By: estepere <estepere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:45:27 by estepere          #+#    #+#             */
-/*   Updated: 2025/02/06 18:50:07 by estepere         ###   ########.fr       */
+/*   Updated: 2025/02/07 17:33:58 by estepere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-void	initial_distance(t_ray *ray, t_player *player)
+void	initial_distance(t_ray *ray, t_player *player, t_map *map)
 {
 	if (ray->ray_dir_x < 0)
 	{
 		ray->step_x = -1;
-		ray->side_dist_x = (ray->pos_x - ray->map_x) * ray->delta_dist_x;
+		ray->side_dist_x = (player->pos_x - map->map_x) * ray->delta_dist_x;
 	}
 	else
 	{
 		ray->step_x = 1;
-		ray->side_dist_x = (ray->pos_x + 1.0 - ray->map_x) * ray->delta_dist_x;
+		ray->side_dist_x = (player->pos_x + 1.0 - map->map_x) * ray->delta_dist_x;
 	}
 	if (ray->ray_dir_y < 0)
 	{
 		ray->step_y = -1;
-		ray->side_dist_y = (ray->pos_y - ray->map_y) * ray->delta_dist_y;
+		ray->side_dist_y = (player->pos_y - map->map_y) * ray->delta_dist_y;
 	}
 	else
 	{
 		ray->step_y = 1;
-		ray->side_dist_y = (ray->pos_y + 1.0 - ray->map_y) * ray->delta_dist_y;
+		ray->side_dist_y = (player->pos_y + 1.0 - map->map_y) * ray->delta_dist_y;
 	}
 }
 
-int	hit_the_wall(t_map *map)
-{
-	
-}
+
+
 
 void	dda_algo(t_ray *ray, t_player *player, t_map *map)
 {
-	int	side_wall; // wall is in E/W for 0 and N/S for 1
-	initial_distance(ray, player);
-	while(hit_the_wall(ray))
+	initial_distance(ray, player, map);
+	while(1)
 	{
 		if (ray->side_dist_x < ray->side_dist_y)
 		{
 			ray->side_dist_x += ray->delta_dist_x; // move to x*square of delta_x
-			ray->curr_ray_x += ray->step_x; // update of the curr ray in the grid
-			side_wall = 0
+			map->map_x += ray->step_x; // update of the curr ray in the grid
+			ray->side_wall = 0
 		}
 		else (ray->side_dist_y < ray->side_dist_x)
 		{
 			ray->side_dist_y += ray->delta_dist_y;
-			ray->curr_ray_y += ray->step_y;
-			side_wall = 1;
+			map->map_y += ray->step_y;
+			ray->side_wall = 1;
 		}
+		if (map->map_x < 0 || map->map_x >= WIDTH || map->map_y < 0 || map->map_y >= HEIGHT)
+			break;
+		if (map->map[map->map_x][map->map_y] == '1')
+			break;
 	}
+	// WALL dist
+	wall_dist(map, player, ray);
+	
 }
 
 // start ray display

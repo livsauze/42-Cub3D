@@ -14,6 +14,9 @@
 # define WIDTH 1400
 # define HEIGHT 900
 
+# define CYAN           0x00FFFF
+# define MAGENTA        0xFF00FF
+
 typedef struct s_mlx
 {
 	char *name;
@@ -49,17 +52,20 @@ typedef	struct s_ray
 	double	side_dist_y; 
 	double	delta_dist_x; // constant variable. distance (base between 2 vertical ligne of the square) between 2 square of the grid (map) in x side (allow to increment side_x)
 	double	delta_dist_y;
-	int		curr_ray_x; // Position of the current ray cast. it's an int who have the cell of the current ray (map_x)
-	int		curr_ray_y; // (map_y)
 	int		hit_wall;
+	double	per_wall_dist; // Distance of the perpendicular line of the camera plane to the wall
+	int		side_wall; // wall is in E/W for 0 and N/S for 1
 }				t_ray;
 
 typedef struct s_map
 {
+	int	map_x; // position of the current ray in the grid
+	int	map_y;
 	int	err;
 	int	fd;
 	int ceiling[3];
 	int	floor[3];
+	char	**map;
 	char	*no;
 	char	*so;
 	char	*we;
@@ -117,6 +123,9 @@ void	ray_casting(t_ray *ray, t_player *player, t_map *map);
 void	dda_algo(t_ray *ray, t_player *player, t_map *map);
 void	initial_distance(t_ray *ray, t_player *player);
 int	hit_the_wall(t_map *map);
+
+// //////////////////////////////////  wall_display  ////////////////////////////////// //
+
 
 
 #endif
