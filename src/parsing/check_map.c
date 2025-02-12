@@ -1,6 +1,7 @@
 #include "../../includes/cub3D.h"
 
-void	ft_get_text(t_map *map, char *line)
+// void	ft_get_text(t_map *map, char *line)
+int	ft_ismap(char *line)
 {
 	int	i;
 
@@ -29,13 +30,21 @@ t_map	*ft_get_map(t_map *map)
 
 	line = get_next_line(map->fd);
 	if (!line)
-		return (map->err = 1, printf("Error\nFile empty\n"), map);
-	while (line && map->err == 0)
+		return (ft_err("File empty\n", map), map);
+	while (line && map->err == 0 && !ft_ismap(line))
 	{
 		ft_get_color(map, line);
 		ft_get_text(map, line);
 		free(line);
 		line = get_next_line(map->fd);
 	}
+	if (map->err > 0)
+		return (map);
+	else if (ft_check_struct(map) == 1 || !line)
+	{
+		ft_err("The .cub file is not complete\n", map);
+		return (map);
+	}
+	ft_parse_map(map, line);
 	return (map);
 }

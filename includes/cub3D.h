@@ -13,7 +13,10 @@
 
 # define WIDTH 1400
 # define HEIGHT 900
-
+# define BLACK 0x000000
+# define WHITE 0xFFFFFF
+# define RED 0xFF0000
+# define GREEN 0x00FF00
 # define CYAN           0x00FFFF
 # define MAGENTA        0xFF00FF
 
@@ -24,6 +27,8 @@ typedef struct s_mlx
 	void *window;
 	void *mlx;
 	void *img;
+	int		width;
+	int		height;
 	int		bits_per_pixel;
 	int		endian;
 	int		line_len;
@@ -78,29 +83,38 @@ typedef struct s_map
 }	t_map;
 
 
+
 /*************************************INIT*************************************/
 t_map	*ft_init_struct(char *file);
 void	ft_init_mlx(t_map *map);
 void	ft_start_game(t_map *map);
 void	ft_end(t_map *map);
+int		ft_init_player(t_map *map, int x, int y, int player);
 void	init_data(t_map *map);
 
 /*************************************CHECK*************************************/
 int ft_check_ext(char *file);
+int	ft_map_unclosed(t_map *map, int x, int y);
+
+
+
 
 
 /*************************************GET_MAP*************************************/
 t_map	*ft_get_map(t_map *map);
 void	ft_get_color(t_map *map, char *line);
+void	ft_get_text(t_map *map, char *line);
 void	ft_get_SO(t_map *map, char *line, int i);
 void	ft_get_NO(t_map *map, char *line, int i);
 void	ft_get_WE(t_map *map, char *line, int i);
 void	ft_get_EA(t_map *map, char *line, int i);
 
-/*************************************UTILS*************************************/
-int	ft_err(char *str);
+/**************************************UTILS**************************************/
+void	ft_err(char *str, t_map *map);
 void	ft_free_tab(char **str);
 
+/*************************************MINIMAP*************************************/
+int	ft_minimap(t_map *map);
 
 // //////////////////////////////////    					////////////////////////////////// //
 									 // Ray casting part //
@@ -115,10 +129,11 @@ void	ft_malloc_error(void);
 
 // //////////////////////////////////  events  ////////////////////////////////// //
 
+
+
 int	ft_close_handler(t_map *map);
 void	ft_events_init(t_map *map);
 int	ft_key_handler(int keysym, t_map *map);
-
 // //////////////////////////////////  ray  ////////////////////////////////// //
 
 void	ray_casting(t_ray *ray, t_player *player, t_map *map, t_mlx *mlx);
