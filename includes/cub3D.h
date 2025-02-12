@@ -13,6 +13,10 @@
 
 # define WIDTH 800
 # define HEIGHT 800
+# define BLACK 0x000000
+# define WHITE 0xFFFFFF
+# define RED 0xFF0000
+# define GREEN 0x00FF00
 
 typedef struct s_player
 {
@@ -28,6 +32,8 @@ typedef struct s_mlx
 	void *window;
 	void *mlx;
 	void *img;
+	int		width;
+	int		height;
 	int		bits_per_pixel;
 	int		endian;
 	int		line_len;
@@ -67,12 +73,14 @@ t_map	*ft_get_map(t_map *map);
 void	ft_get_color(t_map *map, char *line);
 void	ft_get_text(t_map *map, char *line);
 
-/*************************************UTILS*************************************/
+/**************************************UTILS**************************************/
 void	ft_err(char *str, t_map *map);
 void	ft_free_tab(char **str);
 int	ft_empty_line(char *str);
 int	ft_tab_len(char **str);
 
+/*************************************MINIMAP*************************************/
+int	ft_minimap(t_map *map);
 
 
 // //////////////////////////////////  mlx ////////////////////////////////// //

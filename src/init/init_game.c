@@ -2,9 +2,8 @@
 
 void	ft_start_game(t_map *map)
 {
-	(void)map;
 	ft_init_mlx(map);
-	
+	mlx_loop_hook(map->mlx->mlx, ft_minimap, map);
 }
 
 
