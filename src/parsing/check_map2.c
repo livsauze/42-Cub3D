@@ -1,4 +1,5 @@
 #include "../../includes/cub3D.h"
+#include "../../includes/cub3D.h"
 
 int	ft_map_unclosed(t_map *map, int x, int y)
 {
