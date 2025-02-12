@@ -6,7 +6,7 @@
 /*   By: estepere <estepere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:45:27 by estepere          #+#    #+#             */
-/*   Updated: 2025/02/07 17:33:58 by estepere         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:39:06 by estepere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	initial_distance(t_ray *ray, t_player *player, t_map *map)
 
 
 
-void	dda_algo(t_ray *ray, t_player *player, t_map *map)
+void	dda_algo(t_ray *ray, t_player *player, t_map *map, int x)
 {
 	initial_distance(ray, player, map);
 	while(1)
@@ -48,9 +48,9 @@ void	dda_algo(t_ray *ray, t_player *player, t_map *map)
 		{
 			ray->side_dist_x += ray->delta_dist_x; // move to x*square of delta_x
 			map->map_x += ray->step_x; // update of the curr ray in the grid
-			ray->side_wall = 0
+			ray->side_wall = 0;
 		}
-		else (ray->side_dist_y < ray->side_dist_x)
+		else if (ray->side_dist_y < ray->side_dist_x)
 		{
 			ray->side_dist_y += ray->delta_dist_y;
 			map->map_y += ray->step_y;
@@ -61,16 +61,15 @@ void	dda_algo(t_ray *ray, t_player *player, t_map *map)
 		if (map->map[map->map_x][map->map_y] == '1')
 			break;
 	}
-	// WALL dist
-	wall_dist(map, player, ray);
+	wall_dist(map, player, ray, x);
 	
 }
 
 // start ray display
-void	ray_casting(t_ray *ray, t_player *player, t_map *map)
+void	ray_casting(t_ray *ray, t_player *player, t_map *map, t_mlx *mlx)
 {
-	int x;
-
+	int	x;
+	
 	x = 0;
 	while (x < WIDTH)
 	{
@@ -78,9 +77,10 @@ void	ray_casting(t_ray *ray, t_player *player, t_map *map)
 		ray->camera_x = 2 * x / (double)WIDTH - 1;
 		ray->ray_dir_x = player->dir_x + ray->plane_x * ray->camera_x;
 		ray->ray_dir_y = player->dir_y + ray->plane_y * ray->camera_y;
-		dda_algo(ray, player, map);
+		dda_algo(ray, player, map, x);
 		x++;
 	}
+	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img, 0, 0);
 }
 
 // init_data() : Initialise les variables (position, direction, plan de la caméra).

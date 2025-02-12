@@ -41,6 +41,7 @@ typedef struct s_player
 typedef	struct s_ray
 {
 	double camera_x; // relative position of a column pixel on the screen
+	double camera_y;
 	
 	double	ray_dir_x; // constant variable. direction of the ray
 	double	ray_dir_y;
@@ -53,12 +54,13 @@ typedef	struct s_ray
 	double	delta_dist_x; // constant variable. distance (base between 2 vertical ligne of the square) between 2 square of the grid (map) in x side (allow to increment side_x)
 	double	delta_dist_y;
 	int		hit_wall;
-	double	per_wall_dist; // Distance of the perpendicular line of the camera plane to the wall
+	double	perp_wall_dist; // Distance of the perpendicular line of the camera plane to the wall
 	int		side_wall; // wall is in E/W for 0 and N/S for 1
 }				t_ray;
 
 typedef struct s_map
 {
+	int color; // color of the wall
 	int	map_x; // position of the current ray in the grid
 	int	map_y;
 	int	err;
@@ -119,13 +121,14 @@ int	ft_key_handler(int keysym, t_map *map);
 
 // //////////////////////////////////  ray  ////////////////////////////////// //
 
-void	ray_casting(t_ray *ray, t_player *player, t_map *map);
-void	dda_algo(t_ray *ray, t_player *player, t_map *map);
-void	initial_distance(t_ray *ray, t_player *player);
-int	hit_the_wall(t_map *map);
+void	ray_casting(t_ray *ray, t_player *player, t_map *map, t_mlx *mlx);
+void	dda_algo(t_ray *ray, t_player *player, t_map *map, int x);
+void	initial_distance(t_ray *ray, t_player *player, t_map *map);
+int		hit_the_wall(t_map *map);
 
 // //////////////////////////////////  wall_display  ////////////////////////////////// //
-
-
+void	mlx_put_pixel(t_mlx *mlx, int x, int y, int color);
+void	draw_vertical_line(int draw_start, int draw_end, t_map *map, int x);
+void	wall_dist(t_map *map, t_player *player, t_ray *ray, int x);
 
 #endif
