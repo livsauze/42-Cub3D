@@ -90,8 +90,11 @@ t_map	*ft_get_map(t_map *map)
 	}
 	if (map->err > 0)
 		return (map);
-	else if (ft_check_struct(map) == 1)
+	else if (ft_check_struct(map) == 1 || !line)
+	{
 		ft_err("The .cub file is not complete\n", map);
+		return (map);
+	}
 	ft_parse_map(map, line);
 	return (map);
 }
