@@ -20,19 +20,25 @@
 # define CYAN           0x00FFFF
 # define MAGENTA        0xFF00FF
 
-typedef struct s_mlx
+typedef struct s_img
 {
-	char *name;
-	char *addr;
-	void *window;
-	void *mlx;
-	void *img;
+	char 	*addr;
+	void	*img;
 	int		width;
 	int		height;
 	int		bits_per_pixel;
 	int		endian;
 	int		line_len;
-}				t_mlx;
+}				t_img;
+
+typedef struct s_text
+{
+	t_img	*wall_so;
+	t_img	*wall_no;
+	t_img	*wall_we;
+	t_img	*wall_ea;
+} t_text;
+
 
 typedef struct s_player
 {
@@ -77,9 +83,12 @@ typedef struct s_map
 	char	*so;
 	char	*we;
 	char	*ea;
-	t_mlx	*mlx;
+	void	*window;
+	void	*mlx;
+	// t_img	*mlx;
+	t_text	*texture;
 	t_player *player;
-	t_ray *ray;
+	t_ray	*ray;
 }	t_map;
 
 
@@ -87,10 +96,11 @@ typedef struct s_map
 /*************************************INIT*************************************/
 t_map	*ft_init_struct(char *file);
 void	ft_init_mlx(t_map *map);
+void	ft_init_textures(t_map *map);
 void	ft_start_game(t_map *map);
 void	ft_end(t_map *map);
-int		ft_init_player(t_map *map, int x, int y, int player);
 void	init_data(t_map *map);
+int		ft_init_player(t_map *map, int x, int y, int player);
 
 /*************************************CHECK*************************************/
 int ft_check_ext(char *file);
@@ -130,13 +140,13 @@ void	ft_events_init(t_map *map);
 int	ft_key_handler(int keysym, t_map *map);
 // //////////////////////////////////  ray  ////////////////////////////////// //
 
-void	ray_casting(t_ray *ray, t_player *player, t_map *map, t_mlx *mlx);
+void	ray_casting(t_ray *ray, t_player *player, t_map *map, t_img *img);
 void	dda_algo(t_ray *ray, t_player *player, t_map *map, int x);
 void	initial_distance(t_ray *ray, t_player *player, t_map *map);
 int		hit_the_wall(t_map *map);
 
 // //////////////////////////////////  wall_display  ////////////////////////////////// //
-void	mlx_put_pixel(t_mlx *mlx, int x, int y, int color);
+void	mlx_put_pixel(t_img *img, int x, int y, int color);
 void	draw_vertical_line(int draw_start, int draw_end, t_map *map, int x);
 void	wall_dist(t_map *map, t_player *player, t_ray *ray, int x);
 

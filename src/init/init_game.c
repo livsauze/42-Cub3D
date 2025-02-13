@@ -20,7 +20,8 @@ void init_data(t_map *map)
 void	ft_start_game(t_map *map)
 {
 	ft_init_mlx(map);
-	mlx_loop_hook(map->mlx->mlx, ft_minimap, map);
+	// ft_init_textures(map->texture);
+	mlx_loop_hook(map->mlx, ft_minimap, map);
 }
 
 
@@ -34,5 +35,6 @@ int	ft_init_player(t_map *map, int x, int y, int player)
 	map->player = malloc(sizeof(t_player));
 	map->player->pos_x = x;
 	map->player->pos_y = y;
+	// NEED TO IMPLEMENT DIRECTIONS PLAYER
 	return (1);
 }

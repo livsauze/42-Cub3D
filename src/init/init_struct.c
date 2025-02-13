@@ -1,9 +1,13 @@
 #include "../../includes/cub3D.h"
 
+
 t_map	*ft_clean_init(t_map *map)
 {
 	int	i;
 
+	map->color = 0;
+	map->map_x = -1;
+	map->map_y = -1;
 	map->fd = -1;
 	map->err = 0;
 	map->no = NULL;
@@ -17,8 +21,11 @@ t_map	*ft_clean_init(t_map *map)
 		map->floor[i] = -1;
 	}
 	map->map = NULL;
+	map->window = NULL;
 	map->mlx = NULL;
 	map->player = NULL;
+	map->texture = NULL;
+	map->ray = NULL;
 	return (map);
 }
 

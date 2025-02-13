@@ -1,12 +1,12 @@
 #include "../../includes/cub3D.h"
 
 
-void	mlx_put_pixel(t_mlx *mlx, int x, int y, int color)
+void	mlx_put_pixel(t_img *img, int x, int y, int color)
 {
 	int	offset;
 
-	offset = (y * mlx->line_len + (x * (mlx->bits_per_pixel / 8)));
-	*(unsigned int *)(mlx->addr + offset) = color;
+	offset = (y * img->line_len + (x * (img->bits_per_pixel / 8)));
+	*(unsigned int *)(img->addr + offset) = color;
 }
 
 void	draw_vertical_line(int draw_start, int draw_end, t_map *map, int x)
