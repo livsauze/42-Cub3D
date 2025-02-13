@@ -100,6 +100,7 @@ void	ft_init_textures(t_map *map);
 void	ft_start_game(t_map *map);
 void	ft_end(t_map *map);
 void	init_data(t_map *map);
+void	get_dir_player(t_map *map, int x, int y);
 int		ft_init_player(t_map *map, int x, int y, int player);
 
 /*************************************CHECK*************************************/

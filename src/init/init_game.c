@@ -3,8 +3,8 @@
 
 void init_data(t_map *map)
 {
-	map->player->pos_x = 5.0;
-	map->player->pos_y = 5.0;
+	// map->player->pos_x = 5.0;
+	// map->player->pos_y = 5.0;
 	map->player->dir_x = -1.0;
 	map->player->dir_y = 0.0;
 	map->ray->plane_x = 0.0;
@@ -21,13 +21,39 @@ void	ft_start_game(t_map *map)
 {
 	ft_init_mlx(map);
 	// ft_init_textures(map->texture);
-	mlx_loop_hook(map->mlx, ft_minimap, map);
+	// mlx_loop_hook(map->mlx, ft_minimap, map);
 }
 
-
-int	ft_init_player(t_map *map, int x, int y, int player)
+void	get_dir_player(t_map *map, int x, int y)
 {
-	if (player > 0)
+	if (map->map[y][x] == 'N')
+	{
+		map->player->dir_x = 0.0;
+		map->player->dir_y = 1.0;
+	}
+	else if (map->map[y][x] == 'S')
+	{
+		map->player->dir_x = 0.0;
+		map->player->dir_y = -1.0;
+	}
+	else if (map->map[y][x] == 'W')
+	{
+		map->player->dir_x = -1.0;
+		map->player->dir_y = 0.0;
+	}
+	else if (map->map[y][x] == 'E')
+	{
+		map->player->dir_x = 1.0;
+		map->player->dir_y = 0.0;
+	}
+	printf("dir x = %f\ndir y = %f\n", map->player->dir_x, map->player->dir_y);
+	printf("pos x = %f\npos y = %f\n", map->player->pos_x, map->player->pos_y);
+
+}
+
+int	ft_init_player(t_map *map, int x, int y, int nb_player)
+{
+	if (nb_player > 0)
 	{
 		ft_err("Map : more than one player detected\n", map);
 		return (2);
@@ -35,6 +61,7 @@ int	ft_init_player(t_map *map, int x, int y, int player)
 	map->player = malloc(sizeof(t_player));
 	map->player->pos_x = x;
 	map->player->pos_y = y;
+	get_dir_player(map, x, y);
 	// NEED TO IMPLEMENT DIRECTIONS PLAYER
 	return (1);
 }
