@@ -1,12 +1,17 @@
 #include "../../includes/cub3D.h"
 
+void	ft_malloc_game(t_map *map)
+{
+	map->ray = malloc(sizeof(t_ray));
+	map->texture = malloc(sizeof(t_text));
+	map->texture->wall_no = malloc(sizeof(t_img));
+	map->texture->wall_so = malloc(sizeof(t_img));
+	map->texture->wall_we = malloc(sizeof(t_img));
+	map->texture->wall_ea = malloc(sizeof(t_img));
+}
 
 void init_data(t_map *map)
 {
-	map->player->pos_x = 5.0;
-	map->player->pos_y = 5.0;
-	map->player->dir_x = -1.0;
-	map->player->dir_y = 0.0;
 	map->ray->plane_x = 0.0;
 	map->ray->plane_y = 0.66; // great angle to the fps
 	map->map_x = (int)map->player->pos_x; // Same position because the display ray begin at the position of the player 
@@ -16,14 +21,13 @@ void init_data(t_map *map)
 	map->ray->hit_wall = 0;
 }
 
-
 void	ft_start_game(t_map *map)
 {
+	ft_malloc_game(map);
 	ft_init_mlx(map);
-	// ft_init_textures(map->texture);
-	mlx_loop_hook(map->mlx, ft_minimap, map);
+	ft_init_textures(map, map->texture);
+	// mlx_loop_hook(map->mlx, ft_minimap, map);
 }
-
 
 int	ft_init_player(t_map *map, int x, int y, int player)
 {

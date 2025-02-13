@@ -46,7 +46,7 @@ void	ft_parse_map(t_map *map, char *line)
 {
 	char *tmp;
 
-	tmp = ft_strdup(line);
+	tmp = ft_strdup("");
 	while (line)
 	{
 		if (ft_empty_line(line))

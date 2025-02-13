@@ -12,7 +12,8 @@ int	main(int ac, char **av)
 	map = ft_init_struct(av[1]);
 	if (map->err > 0)			
 		return (ft_end(map), free(map), 1);
-
 	ft_start_game(map);
+	if (map->err > 0)			
+		return (ft_end(map), free(map), 1);
 	return (0);
 }

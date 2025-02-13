@@ -29,6 +29,8 @@ typedef struct s_img
 	int		bits_per_pixel;
 	int		endian;
 	int		line_len;
+	int		x;
+	int		y;
 }				t_img;
 
 typedef struct s_text
@@ -96,7 +98,7 @@ typedef struct s_map
 /*************************************INIT*************************************/
 t_map	*ft_init_struct(char *file);
 void	ft_init_mlx(t_map *map);
-void	ft_init_textures(t_map *map);
+void	ft_init_textures(t_map *map, t_text *texture);
 void	ft_start_game(t_map *map);
 void	ft_end(t_map *map);
 void	init_data(t_map *map);
