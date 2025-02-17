@@ -123,6 +123,7 @@ int	ft_tab_len(char **str);
 
 void	ft_draw_bckg(t_map *map, t_img *bckg);
 void	ft_draw_pixel(t_img *img, int x, int y, int color);
+void	my_put_pixel(t_img *img, int x, int y, long color);
 
 /*************************************MINIMAP*************************************/
 int	ft_minimap(t_map *map);

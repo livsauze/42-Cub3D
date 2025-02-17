@@ -27,10 +27,9 @@ void	ft_start_game(t_map *map)
 	ft_malloc_game(map);
 	ft_window_init(map);
 	ft_init_textures(map, map->texture);
-	mlx_loop_hook(map->mlx, ft_hooks, map);
-	
-	mlx_loop(map->mlx);
 	// mlx_loop_hook(map->mlx, ft_minimap, map);
+	mlx_loop_hook(map->mlx, ft_hooks, map);
+	mlx_loop(map->mlx);
 }
 
 int	ft_init_player(t_map *map, int x, int y, int player)
