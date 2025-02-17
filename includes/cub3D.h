@@ -11,8 +11,8 @@
 # include <X11/X.h>
 # include "../minilibx-linux/mlx.h"
 
-# define WIDTH 1400
-# define HEIGHT 900
+# define WIDTH 800
+# define HEIGHT 500
 # define BLACK 0x000000
 # define WHITE 0xFFFFFF
 # define RED 0xFF0000
@@ -26,7 +26,7 @@ typedef struct s_img
 	void	*img;
 	int		width;
 	int		height;
-	int		bits_per_pixel;
+	int		bpp;
 	int		endian;
 	int		line_len;
 	int		x;
@@ -39,6 +39,7 @@ typedef struct s_text
 	t_img	*wall_no;
 	t_img	*wall_we;
 	t_img	*wall_ea;
+	t_img	*bckg;
 } t_text;
 
 
@@ -103,6 +104,7 @@ void	ft_start_game(t_map *map);
 void	ft_end(t_map *map);
 void	init_data(t_map *map);
 int		ft_init_player(t_map *map, int x, int y, int player);
+int	ft_hooks(t_map *map);
 
 /*************************************CHECK*************************************/
 int ft_check_ext(char *file);
@@ -118,6 +120,9 @@ void	ft_err(char *str, t_map *map);
 void	ft_free_tab(char **str);
 int	ft_empty_line(char *str);
 int	ft_tab_len(char **str);
+
+void	ft_draw_bckg(t_map *map, t_img *bckg);
+void	ft_draw_pixel(t_img *img, int x, int y, int color);
 
 /*************************************MINIMAP*************************************/
 int	ft_minimap(t_map *map);

@@ -31,6 +31,8 @@ void	ft_free_img(t_text *texture)
 		free(texture->wall_we);
 	if (texture->wall_ea)
 		free(texture->wall_ea);
+	if (texture->bckg)
+		free(texture->bckg);
 }
 
 void	ft_end(t_map *map)

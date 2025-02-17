@@ -6,7 +6,7 @@ int	main(int ac, char **av)
 	t_map	*map;
 
 	if (ac != 2)
-		return (printf("Error\nToo few arguments\n"), 1);
+		return (printf("Error\nBad arguments nb\n"), 1);
 	if (ft_check_ext(av[1]) == 1)
 		return (printf("Error\nPlease use a .cub extension file\n"), 1);
 	map = ft_init_struct(av[1]);

@@ -1,11 +1,5 @@
 // #include "../includes/cub3D.h"
-// void	ft_draw_pixel(t_mlx *mnmap, int x, int y, int color)
-// {
-// 	int	offset;
-// 	offset = (mnmap->line_len * y) + (x * (mnmap->bits_per_pixel / 8));	
 
-// 	*((unsigned int *)(offset + mnmap->addr)) = color;
-// }
 
 // void	ft_draw_minimap(t_map *map, t_mlx *mnmap)
 // {

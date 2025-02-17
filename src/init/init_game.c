@@ -8,6 +8,7 @@ void	ft_malloc_game(t_map *map)
 	map->texture->wall_so = malloc(sizeof(t_img));
 	map->texture->wall_we = malloc(sizeof(t_img));
 	map->texture->wall_ea = malloc(sizeof(t_img));
+	map->texture->bckg = malloc(sizeof(t_img));
 }
 
 void init_data(t_map *map)
@@ -24,8 +25,11 @@ void init_data(t_map *map)
 void	ft_start_game(t_map *map)
 {
 	ft_malloc_game(map);
-	ft_init_mlx(map);
+	ft_window_init(map);
 	ft_init_textures(map, map->texture);
+	mlx_loop_hook(map->mlx, ft_hooks, map);
+	
+	mlx_loop(map->mlx);
 	// mlx_loop_hook(map->mlx, ft_minimap, map);
 }
 
