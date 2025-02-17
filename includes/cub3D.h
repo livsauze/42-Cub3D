@@ -89,6 +89,7 @@ typedef struct s_map
 	t_text	*texture;
 	t_player *player;
 	t_ray	*ray;
+	t_img *img;
 }	t_map;
 
 
@@ -102,6 +103,8 @@ void	ft_end(t_map *map);
 void	init_data(t_map *map);
 void	get_dir_player(t_map *map, int x, int y);
 int		ft_init_player(t_map *map, int x, int y, int player);
+void	ft_malloc_game(t_map *map);
+
 
 /*************************************CHECK*************************************/
 int ft_check_ext(char *file);
@@ -141,7 +144,7 @@ void	ft_events_init(t_map *map);
 int	ft_key_handler(int keysym, t_map *map);
 // //////////////////////////////////  ray  ////////////////////////////////// //
 
-void	ray_casting(t_ray *ray, t_player *player, t_map *map, t_img *img);
+void	ray_casting(t_ray *ray, t_player *player, t_map *map);
 void	dda_algo(t_ray *ray, t_player *player, t_map *map, int x);
 void	initial_distance(t_ray *ray, t_player *player, t_map *map);
 int		hit_the_wall(t_map *map);

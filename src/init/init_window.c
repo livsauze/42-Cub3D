@@ -18,7 +18,7 @@ void	ft_window_init(t_map *map)
 		free(map->mlx);
 		ft_malloc_error();
 	}
-	// map->mlx->img = mlx_new_image(map->mlx->mlx, WIDTH, HEIGHT);
+	map->img = mlx_new_image(map->mlx, WIDTH, HEIGHT);
 	// if (map->mlx->img == NULL)
 	// {
 	// 	mlx_destroy_window(map->mlx->mlx, map->mlx->window);
