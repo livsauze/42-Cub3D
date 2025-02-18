@@ -6,7 +6,7 @@
 /*   By: estepere <estepere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:45:27 by estepere          #+#    #+#             */
-/*   Updated: 2025/02/17 17:52:40 by estepere         ###   ########.fr       */
+/*   Updated: 2025/02/18 17:26:13 by estepere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	initial_distance(t_ray *ray, t_player *player, t_map *map)
 void	dda_algo(t_ray *ray, t_player *player, t_map *map, int x)
 {
 	initial_distance(ray, player, map);
+
 	while(1)
 	{
 		if (ray->side_dist_x < ray->side_dist_y)
@@ -61,7 +62,7 @@ void	dda_algo(t_ray *ray, t_player *player, t_map *map, int x)
 		if (map->map[map->map_x][map->map_y] == '1')
 			break;
 	}
-	wall_dist(map, player, ray, x);
+	wall_dist(map, ray, x);
 	
 }
 
@@ -69,7 +70,6 @@ void	dda_algo(t_ray *ray, t_player *player, t_map *map, int x)
 void	ray_casting(t_ray *ray, t_player *player, t_map *map)
 {
 	int	x;
-	
 	x = 0;
 	while (x < WIDTH)
 	{

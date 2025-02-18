@@ -152,6 +152,6 @@ int		hit_the_wall(t_map *map);
 // //////////////////////////////////  wall_display  ////////////////////////////////// //
 void	mlx_put_pixel(t_img *img, int x, int y, int color);
 void	draw_vertical_line(int draw_start, int draw_end, t_map *map, int x);
-void	wall_dist(t_map *map, t_player *player, t_ray *ray, int x);
+void	wall_dist(t_map *map, t_ray *ray, int x);
 
 #endif

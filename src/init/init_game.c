@@ -9,6 +9,8 @@ int	ft_hook(t_map *map)
 
 void init_data(t_map *map)
 {
+	map->ray->side_dist_x = 0.0;
+	map->ray->side_dist_y = 0.0;
 	map->ray->camera_x = 0.0;
 	map->ray->camera_y = 0.0;
 	map->ray->plane_x = 0.0;
@@ -80,6 +82,5 @@ int	ft_init_player(t_map *map, int x, int y, int nb_player)
 	map->player->pos_x = x;
 	map->player->pos_y = y;
 	get_dir_player(map, x, y);
-	// NEED TO IMPLEMENT DIRECTIONS PLAYER
 	return (1);
 }
