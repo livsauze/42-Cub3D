@@ -6,11 +6,39 @@ int	ft_hook(t_map *map)
 	mlx_put_image_to_window(map->mlx, map->window, map->img, 0, 0);
 	return (0);
 }
+int	len_map_widht(t_map *map)
+{
+	int	i;
 
+	i = 0;
+	while(map->map[i])
+		i++;
+	printf("map_widht = %i\n", i);
+	return (i);
+}
+
+int	len_map_height(t_map *map)
+{
+	int	max_height;
+	int	i;
+	int	len;
+
+	max_height = 0;
+	i = 0;
+	
+	while(map->map[i])
+	{
+		len = ft_strlen(map->map[i]);
+		if (len > max_height)
+			max_height = len;
+		i++;
+		
+	}
+	printf("map_height = %i\n", max_height);
+	return(i);
+}
 void init_data(t_map *map)
 {
-	map->ray->side_dist_x = 0.0;
-	map->ray->side_dist_y = 0.0;
 	map->ray->camera_x = 0.0;
 	map->ray->camera_y = 0.0;
 	map->ray->plane_x = 0.0;
@@ -24,6 +52,8 @@ void init_data(t_map *map)
 	map->map_y = (int)map->player->pos_y; // cast to int to have the cell of the current ray. exemple if pos_x = 5,7 => ray_x = 5
 	map->ray->delta_dist_x = fabs(1 / map->ray->ray_dir_x);
 	map->ray->delta_dist_y = fabs(1 / map->ray->ray_dir_y);
+	map->map_width = len_map_widht(map);
+	map->map_height = len_map_height(map);
 	// map->ray->hit_wall = 0;
 }
 void	ft_malloc_game(t_map *map)

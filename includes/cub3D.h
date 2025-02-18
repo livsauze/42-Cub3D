@@ -75,6 +75,8 @@ typedef struct s_map
 	int	map_x; // position of the current ray in the grid
 	int	map_y;
 	int	err;
+	int map_width;
+	int	map_height;
 	int	fd;
 	int ceiling[3];
 	int	floor[3];
@@ -104,6 +106,8 @@ void	init_data(t_map *map);
 void	get_dir_player(t_map *map, int x, int y);
 int		ft_init_player(t_map *map, int x, int y, int player);
 void	ft_malloc_game(t_map *map);
+int		len_map_height(t_map *map);
+int		len_map_widht(t_map *map);
 
 
 /*************************************CHECK*************************************/
