@@ -24,6 +24,7 @@ t_map	*ft_clean_init(t_map *map)
 	map->window = NULL;
 	map->mlx = NULL;
 	map->player = NULL;
+	map->mini = NULL;
 	map->texture = NULL;
 	map->ray = NULL;
 	return (map);

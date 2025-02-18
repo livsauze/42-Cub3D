@@ -42,6 +42,14 @@ typedef struct s_text
 	t_img	*bckg;
 } t_text;
 
+typedef struct s_minimap
+{
+	t_img	*mnmap;
+	int		size;
+	int		offset_x;
+	int		offset_y;
+	int		tile_size;
+}		t_minimap;
 
 typedef struct s_player
 {
@@ -88,10 +96,11 @@ typedef struct s_map
 	char	*ea;
 	void	*window;
 	void	*mlx;
-	// t_img	*mlx;
+	t_img	*img;
 	t_text	*texture;
 	t_player *player;
 	t_ray	*ray;
+	t_minimap	*mini;
 }	t_map;
 
 
@@ -104,7 +113,7 @@ void	ft_start_game(t_map *map);
 void	ft_end(t_map *map);
 void	init_data(t_map *map);
 int		ft_init_player(t_map *map, int x, int y, int player);
-int	ft_hooks(t_map *map);
+int	ft_hook(t_map *map);
 
 /*************************************CHECK*************************************/
 int ft_check_ext(char *file);
@@ -126,7 +135,7 @@ void	ft_draw_pixel(t_img *img, int x, int y, int color);
 void	my_put_pixel(t_img *img, int x, int y, long color);
 
 /*************************************MINIMAP*************************************/
-int	ft_minimap(t_map *map);
+int	ft_minimap(t_map *map, t_minimap *mini);
 
 // //////////////////////////////////    					////////////////////////////////// //
 									 // Ray casting part //
