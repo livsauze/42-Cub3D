@@ -13,12 +13,15 @@
 
 # define WIDTH 800
 # define HEIGHT 500
+# define MINIW 300
+# define MINIH 100
+
 # define BLACK 0x000000
 # define WHITE 0xFFFFFF
 # define RED 0xFF0000
 # define GREEN 0x00FF00
-# define CYAN           0x00FFFF
-# define MAGENTA        0xFF00FF
+# define CYAN 0x00FFFF
+# define MAGENTA 0xFF00FF
 
 typedef struct s_img
 {
@@ -82,13 +85,15 @@ typedef	struct s_ray
 
 typedef struct s_map
 {
-	int color; // color of the wall
-	int	map_x; // position of the current ray in the grid
-	int	map_y;
-	int	err;
-	int	fd;
-	int ceiling[3];
-	int	floor[3];
+	int		max_w;
+	int		max_h;
+	int		color; // color of the wall
+	int 	map_x; // position of the current ray in the grid
+	int 	map_y;
+	int		err;
+	int		fd;
+	int		ceiling[3];
+	int		floor[3];
 	char	**map;
 	char	*no;
 	char	*so;
@@ -97,9 +102,9 @@ typedef struct s_map
 	void	*window;
 	void	*mlx;
 	t_img	*img;
-	t_text	*texture;
-	t_player *player;
-	t_ray	*ray;
+	t_text		*texture;
+	t_player	*player;
+	t_ray		*ray;
 	t_minimap	*mini;
 }	t_map;
 
@@ -129,7 +134,7 @@ void	ft_err(char *str, t_map *map);
 void	ft_free_tab(char **str);
 int	ft_empty_line(char *str);
 int	ft_tab_len(char **str);
-
+int	len_map_width(char **map);
 void	ft_draw_bckg(t_map *map, t_img *bckg);
 void	ft_draw_pixel(t_img *img, int x, int y, int color);
 void	my_put_pixel(t_img *img, int x, int y, long color);

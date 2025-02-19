@@ -11,10 +11,13 @@ void	ft_malloc_game(t_map *map)
 	map->texture->wall_ea = malloc(sizeof(t_img));
 	map->texture->bckg = malloc(sizeof(t_img));
 	map->mini->mnmap = malloc(sizeof(t_img));
+	init_data(map);
 }
 
 void init_data(t_map *map)
 {
+	map->max_h = ft_tab_len(map->map);
+	map->max_w = len_map_width(map->map) + 1;
 	map->ray->plane_x = 0.0;
 	map->ray->plane_y = 0.66; // great angle to the fps
 	map->map_x = (int)map->player->pos_x; // Same position because the display ray begin at the position of the player 
