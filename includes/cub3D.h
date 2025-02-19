@@ -106,8 +106,7 @@ void	init_data(t_map *map);
 void	get_dir_player(t_map *map, int x, int y);
 int		ft_init_player(t_map *map, int x, int y, int player);
 void	ft_malloc_game(t_map *map);
-int		len_map_height(t_map *map);
-int		len_map_widht(t_map *map);
+int		len_map_width(char **map);
 
 
 /*************************************CHECK*************************************/
