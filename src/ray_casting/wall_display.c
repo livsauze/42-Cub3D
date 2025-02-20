@@ -19,7 +19,7 @@ void	draw_vertical_line(int draw_start, int draw_end, t_map *map, int x)
 	// printf("y = %i\n", y);
 	while (y < draw_end)
 	{
-		mlx_put_pixel(map->mlx, x, y, map->color);
+		mlx_put_pixel(map->img, x, y, map->color);
 		y++;
 	}
 }

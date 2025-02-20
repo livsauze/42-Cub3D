@@ -3,7 +3,7 @@
 int	ft_hook(t_map *map)
 {
 	ray_casting(map->ray, map->player, map);
-	mlx_put_image_to_window(map->mlx, map->window, map->img, 0, 0);
+	mlx_put_image_to_window(map->mlx, map->window, map->img->img, 0, 0);
 	return (0);
 }
 
@@ -43,6 +43,7 @@ void init_data(t_map *map)
 }
 void	ft_malloc_game(t_map *map)
 {
+	map->img = malloc(sizeof(t_img));
 	map->texture = malloc(sizeof(t_text));
 	map->texture->wall_no = malloc(sizeof(t_img));
 	map->texture->wall_so = malloc(sizeof(t_img));

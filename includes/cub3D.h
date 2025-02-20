@@ -87,7 +87,6 @@ typedef struct s_map
 	char	*ea;
 	void	*window;
 	void	*mlx;
-	// t_img	*mlx;
 	t_text	*texture;
 	t_player *player;
 	t_ray	*ray;
