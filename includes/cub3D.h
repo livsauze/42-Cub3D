@@ -158,7 +158,7 @@ int		ft_check_wall(char **map, t_player *player, int key);
 
 // //////////////////////////////////  ray  //////////////////////////////// //
 
-void	ray_casting(t_ray *ray, t_player *player, t_map *map, t_img *img);
+void	ray_casting(t_ray *ray, t_player *player, t_map *map);
 void	dda_algo(t_ray *ray, t_player *player, t_map *map, int x);
 void	initial_distance(t_ray *ray, t_player *player, t_map *map);
 int		hit_the_wall(t_map *map);

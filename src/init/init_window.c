@@ -26,7 +26,7 @@ void	ft_window_init(t_map *map)
 	// 	free(map->mlx->mlx);
 	// 	ft_malloc_error();
 	// }
-	// map->mlx->addr = mlx_get_data_addr(map->mlx->img, &map->mlx->bpp,
-	// 		&map->mlx->line_len, &map->mlx->endian);
+	map->img->addr = mlx_get_data_addr(map->img, &map->img->bpp,
+			&map->img->line_len, &map->img->endian);
 	ft_events_init(map);
 }

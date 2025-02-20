@@ -10,6 +10,13 @@ void	ft_err(char *str, t_map *map)
 
 void	ft_free_all(t_map *map)
 {
+	if (map->mini)
+	{
+		free(map->mini->mnmap);
+		free(map->mini);
+	}
+	if (map->img)
+		free(map->img);
 	if (map->so)
 		free(map->so);
 	if (map->no)
@@ -47,5 +54,6 @@ void	ft_end(t_map *map)
 		ft_free_img(map->t);
 		free(map->t);
 	}
+	
 	close(map->fd);
 }

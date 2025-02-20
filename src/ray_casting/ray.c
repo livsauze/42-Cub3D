@@ -6,7 +6,7 @@
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:45:27 by estepere          #+#    #+#             */
-/*   Updated: 2025/02/13 14:21:36 by livsauze         ###   ########.fr       */
+/*   Updated: 2025/02/20 20:31:13 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ void	initial_distance(t_ray *ray, t_player *player, t_map *map)
 }
 
 
-
-
 void	dda_algo(t_ray *ray, t_player *player, t_map *map, int x)
 {
 	initial_distance(ray, player, map);
@@ -66,7 +64,7 @@ void	dda_algo(t_ray *ray, t_player *player, t_map *map, int x)
 }
 
 // start ray display
-void	ray_casting(t_ray *ray, t_player *player, t_map *map, t_img *img)
+void	ray_casting(t_ray *ray, t_player *player, t_map *map)
 {
 	int	x;
 	
@@ -80,7 +78,6 @@ void	ray_casting(t_ray *ray, t_player *player, t_map *map, t_img *img)
 		dda_algo(ray, player, map, x);
 		x++;
 	}
-	mlx_put_image_to_window(map->mlx, map->window, img->img, 0, 0);
 }
 
 // init_data() : Initialise les variables (position, direction, plan de la caméra).

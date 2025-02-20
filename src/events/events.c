@@ -2,14 +2,18 @@
 
 void	ft_destroy_img(t_map *map, t_text *texture)
 {
-	// if (texture->wall_so)
-	// 	mlx_destroy_image(map->mlx, texture->wall_so->img);
-	// if (texture->wall_no)
-	// 	mlx_destroy_image(map->mlx, texture->wall_no->img);
-	// if (texture->wall_we)
-	// 	mlx_destroy_image(map->mlx, texture->wall_we->img);
-	// if (texture->wall_ea)
-	// 	mlx_destroy_image(map->mlx, texture->wall_ea->img);
+	// if (map->img->img)
+	// 	mlx_destroy_image(map->mlx, map->img->img);
+	if (map->mini->mnmap)
+		mlx_destroy_image(map->mlx, map->mini->mnmap->img);
+	if (texture->wall_so)
+		mlx_destroy_image(map->mlx, texture->wall_so->img);
+	if (texture->wall_no)
+		mlx_destroy_image(map->mlx, texture->wall_no->img);
+	if (texture->wall_we)
+		mlx_destroy_image(map->mlx, texture->wall_we->img);
+	if (texture->wall_ea)
+		mlx_destroy_image(map->mlx, texture->wall_ea->img);
 	if (texture->bckg)
 		mlx_destroy_image(map->mlx, texture->bckg->img);
 }
@@ -17,6 +21,7 @@ void	ft_destroy_img(t_map *map, t_text *texture)
 int	ft_close_handler(t_map *map)
 {
 	ft_destroy_img(map, map->t);
+	ft_end(map);
 	if (map->window)
 		mlx_destroy_window(map->mlx, map->window);
 	if (map->mlx)
@@ -25,7 +30,6 @@ int	ft_close_handler(t_map *map)
 		mlx_destroy_display(map->mlx);
 		free(map->mlx);
 	}
-	ft_end(map);
 	free(map);
 	exit(EXIT_SUCCESS);
 	return (0);
@@ -57,7 +61,7 @@ int	ft_key_handler(int keysym, t_map *map)
 		ft_close_handler(map);
 	}
 	else if (keysym == 119 || keysym == 97 || keysym == 115
-		|| keysym == 100)
+		|| keysym == 100 || keysym == XK_Left || keysym == XK_Right)
 		ft_move(map, map->player, keysym);
 	ft_hook(map);
 	return (0);
