@@ -23,23 +23,19 @@ int	len_map_width(char **map)
 			max_width = len;
 		i++;
 	}
-	max_width--;
+	// max_width--;
 	return(max_width);
 }
 void init_data(t_map *map)
 {
 	map->ray->camera_x = 0.0;
 	map->ray->camera_y = 0.0;
-	map->ray->side_wall = 0;
-	map->ray->step_x = 0;
-	map->ray->step_y = 0;
+	// map->ray->side_wall = 0;
 	map->map_x = (int)map->player->pos_x; // Same position because the display ray begin at the position of the player 
 	map->map_y = (int)map->player->pos_y; // cast to int to have the cell of the current ray. exemple if pos_x = 5,7 => ray_x = 5
-	// map->ray->delta_dist_x = fabs(1 / map->ray->ray_dir_x);
-	// map->ray->delta_dist_y = fabs(1 / map->ray->ray_dir_y);
-	map->map_height = ft_tab_len(map->map) - 1;
+	map->map_height = ft_tab_len(map->map) /*- 1*/;
 	map->map_width = len_map_width(map->map);
-	// map->ray->hit_wall = 0;
+	map->ray->hit_wall = 0;
 }
 void	ft_malloc_game(t_map *map)
 {
@@ -56,8 +52,6 @@ void	ft_start_game(t_map *map)
 	ft_malloc_game(map);
 	init_data(map);
 	ft_window_init(map);
-	// ray_casting(map->ray, map->player, map, map->img);
-	// ft_init_textures(map->texture);
 	mlx_loop_hook(map->mlx, ft_hook, map);
 	mlx_loop(map->mlx);
 }
@@ -68,30 +62,28 @@ void	get_dir_player(t_map *map, int x, int y)
 	{
 		map->player->dir_x = 0.0;
 		map->player->dir_y = 1.0;
-		map->ray->plane_x = 0.66;
-		map->ray->plane_y = 0.0;
 	}
 	else if (map->map[y][x] == 'S')
 	{
 		map->player->dir_x = 0.0;
 		map->player->dir_y = -1.0;
-		map->ray->plane_x = -0.66;
-		map->ray->plane_y = 0.0;
 	}
 	else if (map->map[y][x] == 'W')
 	{
 		map->player->dir_x = -1.0;
 		map->player->dir_y = 0.0;
-		map->ray->plane_x = 0.0;
-		map->ray->plane_y = -0.66;
 	}
 	else if (map->map[y][x] == 'E')
 	{
 		map->player->dir_x = 1.0;
 		map->player->dir_y = 0.0;
-		map->ray->plane_x = 0.0;
-		map->ray->plane_y = 0.66;
 	}
+	map->ray->plane_x = -map->player->dir_y * 0.66;
+	map->ray->plane_y = map->player->dir_x * 0.66;
+
+	// if we inverse dir_y to -dir_y and the same for dir_x that's broke the render
+	
+	
 }
 
 int	ft_init_player(t_map *map, int x, int y, int nb_player)

@@ -6,12 +6,12 @@
 /*   By: estepere <estepere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:45:27 by estepere          #+#    #+#             */
-/*   Updated: 2025/02/19 18:17:33 by estepere         ###   ########.fr       */
+/*   Updated: 2025/02/20 23:09:47 by estepere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
-
+// ok
 void	initial_distance(t_ray *ray, t_player *player, t_map *map)
 {
 	if (ray->ray_dir_x < 0)
@@ -34,16 +34,17 @@ void	initial_distance(t_ray *ray, t_player *player, t_map *map)
 		ray->step_y = 1;
 		ray->side_dist_y = (player->pos_y + 1.0 - map->map_y) * ray->delta_dist_y;
 	}
+
 }
 
 
 
-
+// ok
 void	dda_algo(t_ray *ray, t_player *player, t_map *map, int x)
 {
+	ray->hit_wall = 0; // CHECK THE PLACEMENT
 	initial_distance(ray, player, map);
-
-	while(1)
+	while(ray->hit_wall == 0)
 	{
 		if (ray->side_dist_x < ray->side_dist_y)
 		{
@@ -60,14 +61,26 @@ void	dda_algo(t_ray *ray, t_player *player, t_map *map, int x)
 		if (map->map_x < 0 || map->map_x >= map->map_width || map->map_y < 0
 			|| map->map_y >= map->map_height)
 			break;
-		if (map->map[map->map_x][map->map_y] == '1')
-			break;
+		// if (map->map_x < 0)
+ 	   	// 	map->map_x = 0;
+		// if (map->map_x >= map->map_width)
+ 		//    map->map_x = map->map_width - 1;
+		// if (map->map_y < 0)
+		//     map->map_y = 0;
+		// if (map->map_y >= map->map_height)
+  		// 	map->map_y = map->map_height - 1;
+		if (map->map[map->map_y][map->map_x] == '1')
+			ray->hit_wall = 1;
+	printf("\033[1;32mside_dist_x = %f\033[0m\n", ray->side_dist_x);
+	printf("\033[1;32mdelta_dist_x = %f\033[0m\n", ray->delta_dist_x);
+	printf("\033[1;34mside_dist_y = %f\033[0m\n", ray->side_dist_y);
+	printf("\033[1;34mdelta_dist_y = %f\033[0m\n", ray->delta_dist_y);
+
 	}
 	wall_dist(map, ray, x);
-	
 }
 
-// start ray display
+// start ray display OK
 void	ray_casting(t_ray *ray, t_player *player, t_map *map)
 {
 	int	x;
@@ -75,17 +88,21 @@ void	ray_casting(t_ray *ray, t_player *player, t_map *map)
 	while (x < WIDTH)
 	{
 	// calculate ray position (camera_x) and direction (ray_dir)
-		ray->camera_x = 2 * x / (double)WIDTH - 1;
+		// ray->camera_x = 2 * x / (double)WIDTH - 1;
+		map->map_x = (int)player->pos_x;
+        map->map_y = (int)player->pos_y;
+		ray->camera_x = (2 * x / (double)WIDTH - 1) * (WIDTH / (double)HEIGHT);
 		ray->ray_dir_x = player->dir_x + ray->plane_x * ray->camera_x;
 		ray->ray_dir_y = player->dir_y + ray->plane_y * ray->camera_y;
 		if (ray->ray_dir_x == 0)
-            ray->delta_dist_x = INFINITY;
+            ray->delta_dist_x = 1e30;
         else
             ray->delta_dist_x = fabs(1 / ray->ray_dir_x);
         if (ray->ray_dir_y == 0)
-            ray->delta_dist_y = INFINITY;
+            ray->delta_dist_y = 1e30;
         else
             ray->delta_dist_y = fabs(1 / ray->ray_dir_y);
+		ray->hit_wall = 0;
 		dda_algo(ray, player, map, x);
 		x++;
 	}
