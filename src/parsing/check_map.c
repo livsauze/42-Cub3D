@@ -44,7 +44,7 @@ void	ft_check_map(t_map *map)
 
 void	ft_parse_map(t_map *map, char *line)
 {
-	char *tmp;
+	char	*tmp;
 
 	tmp = ft_strdup("");
 	while (line)

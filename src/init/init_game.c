@@ -3,18 +3,18 @@
 void	ft_malloc_game(t_map *map)
 {
 	map->ray = malloc(sizeof(t_ray));
-	map->texture = malloc(sizeof(t_text));
+	map->t = malloc(sizeof(t_text));
 	map->mini = malloc(sizeof(t_minimap));
-	map->texture->wall_no = malloc(sizeof(t_img));
-	map->texture->wall_so = malloc(sizeof(t_img));
-	map->texture->wall_we = malloc(sizeof(t_img));
-	map->texture->wall_ea = malloc(sizeof(t_img));
-	map->texture->bckg = malloc(sizeof(t_img));
+	map->t->wall_no = malloc(sizeof(t_img));
+	map->t->wall_so = malloc(sizeof(t_img));
+	map->t->wall_we = malloc(sizeof(t_img));
+	map->t->wall_ea = malloc(sizeof(t_img));
+	map->t->bckg = malloc(sizeof(t_img));
 	map->mini->mnmap = malloc(sizeof(t_img));
 	init_data(map);
 }
 
-void init_data(t_map *map)
+void	init_data(t_map *map)
 {
 	map->max_h = ft_tab_len(map->map);
 	map->max_w = len_map_width(map->map) + 1;
@@ -33,7 +33,7 @@ void	ft_start_game(t_map *map)
 {
 	ft_malloc_game(map);
 	ft_window_init(map);
-	ft_init_textures(map, map->texture);
+	ft_init_textures(map, map->t, map->mini->mnmap);
 	mlx_loop_hook(map->mlx, ft_hook, map);
 	mlx_loop(map->mlx);
 }
@@ -60,9 +60,6 @@ void	get_dir_player(t_map *map, int x, int y)
 		map->player->dir_x = 1.0;
 		map->player->dir_y = 0.0;
 	}
-	printf("dir x = %f\ndir y = %f\n", map->player->dir_x, map->player->dir_y);
-	printf("pos x = %f\npos y = %f\n", map->player->pos_x, map->player->pos_y);
-
 }
 
 int	ft_init_player(t_map *map, int x, int y, int nb_player)
@@ -76,6 +73,5 @@ int	ft_init_player(t_map *map, int x, int y, int nb_player)
 	map->player->pos_x = x;
 	map->player->pos_y = y;
 	get_dir_player(map, x, y);
-	// NEED TO IMPLEMENT DIRECTIONS PLAYER
 	return (1);
 }

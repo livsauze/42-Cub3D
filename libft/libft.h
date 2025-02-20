@@ -6,7 +6,7 @@
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 14:26:34 by livsauze          #+#    #+#             */
-/*   Updated: 2025/02/04 17:07:38 by livsauze         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:11:04 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ int		ft_strncmp(const char *s1, const char *s2, int n);
 int		ft_memcmp(const void *str1, const void *str2, int n);
 int		ft_atoi(const char *str);
 int		ft_lstsize(t_list *lst);
-int	ft_strlen(const char *str);
-int	ft_strlcat(char *dest, const char *src, int size);
-int	ft_strlcpy(char *dest, const char *src, int size);
+int		ft_strlen(const char *str);
+int		ft_strlcat(char *dest, const char *src, int size);
+int		ft_strlcpy(char *dest, const char *src, int size);
 void	*ft_memset(void *s, int c, int n);
 void	*ft_memcpy(void *destination, const void *source, int size);
 void	*ft_memmove(void *dest, const void *src, int n);

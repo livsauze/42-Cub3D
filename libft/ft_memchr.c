@@ -6,7 +6,7 @@
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:42:55 by livsauze          #+#    #+#             */
-/*   Updated: 2025/01/23 16:44:51 by livsauze         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:10:26 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	*ft_memchr(const void *s, int c, int n)
 {
 	const char	*str;
-	int		i;
+	int			i;
 
 	str = s;
 	i = 0;

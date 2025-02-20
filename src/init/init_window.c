@@ -7,7 +7,7 @@ void	ft_malloc_error(void)
 }
 
 void	ft_window_init(t_map *map)
-{	
+{
 	map->mlx = mlx_init();
 	if (map->mlx == NULL)
 		ft_malloc_error();
@@ -30,4 +30,3 @@ void	ft_window_init(t_map *map)
 	// 		&map->mlx->line_len, &map->mlx->endian);
 	ft_events_init(map);
 }
-

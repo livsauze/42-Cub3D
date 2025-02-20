@@ -18,8 +18,8 @@ long	ft_convert_rgb(int r, int g, int b)
 
 void	ft_draw_bckg(t_map *map, t_img *bckg)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 	long	color;
 
 	color = ft_convert_rgb(map->ceiling[0], map->ceiling[1], map->ceiling[2]);

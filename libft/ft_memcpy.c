@@ -6,7 +6,7 @@
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 12:06:42 by livsauze          #+#    #+#             */
-/*   Updated: 2025/01/23 16:45:01 by livsauze         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:11:18 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	*ft_memcpy(void *dest, const void *src, int n)
 {
 	const char	*s;
 	char		*d;
-	int		i;
+	int			i;
 
 	if (dest == NULL && src == NULL)
 		return (NULL);

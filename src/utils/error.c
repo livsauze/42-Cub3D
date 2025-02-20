@@ -42,10 +42,10 @@ void	ft_end(t_map *map)
 		free(map->player);
 	if (map->ray)
 		free(map->ray);
-	if (map->texture)
+	if (map->t)
 	{
-		ft_free_img(map->texture);
-		free(map->texture);
+		ft_free_img(map->t);
+		free(map->t);
 	}
 	close(map->fd);
 }
