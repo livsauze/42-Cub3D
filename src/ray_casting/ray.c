@@ -6,7 +6,7 @@
 /*   By: estepere <estepere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:45:27 by estepere          #+#    #+#             */
-/*   Updated: 2025/02/20 23:09:47 by estepere         ###   ########.fr       */
+/*   Updated: 2025/02/21 00:00:32 by estepere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,10 @@ void	dda_algo(t_ray *ray, t_player *player, t_map *map, int x)
 	printf("\033[1;32mdelta_dist_x = %f\033[0m\n", ray->delta_dist_x);
 	printf("\033[1;34mside_dist_y = %f\033[0m\n", ray->side_dist_y);
 	printf("\033[1;34mdelta_dist_y = %f\033[0m\n", ray->delta_dist_y);
+	printf("plane x = %f\n", map->ray->plane_x);
+	printf("plane y = %f\n", map->ray->plane_y);
+
+
 
 	}
 	wall_dist(map, ray, x);

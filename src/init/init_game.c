@@ -23,7 +23,7 @@ int	len_map_width(char **map)
 			max_width = len;
 		i++;
 	}
-	// max_width--;
+	max_width--;
 	return(max_width);
 }
 void init_data(t_map *map)
@@ -33,7 +33,7 @@ void init_data(t_map *map)
 	// map->ray->side_wall = 0;
 	map->map_x = (int)map->player->pos_x; // Same position because the display ray begin at the position of the player 
 	map->map_y = (int)map->player->pos_y; // cast to int to have the cell of the current ray. exemple if pos_x = 5,7 => ray_x = 5
-	map->map_height = ft_tab_len(map->map) /*- 1*/;
+	map->map_height = ft_tab_len(map->map) - 1;
 	map->map_width = len_map_width(map->map);
 	map->ray->hit_wall = 0;
 }
@@ -78,8 +78,10 @@ void	get_dir_player(t_map *map, int x, int y)
 		map->player->dir_x = 1.0;
 		map->player->dir_y = 0.0;
 	}
-	map->ray->plane_x = -map->player->dir_y * 0.66;
+	map->ray->plane_x = map->player->dir_y * 0.66;
 	map->ray->plane_y = map->player->dir_x * 0.66;
+
+// relation with N/S/E/W and plane_x/y is OK with this formula. the '-' is usless in the formula (ned to check the '-' when the S is OK)
 
 	// if we inverse dir_y to -dir_y and the same for dir_x that's broke the render
 	
