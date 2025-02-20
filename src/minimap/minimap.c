@@ -1,42 +1,44 @@
-// #include "../includes/cub3D.h"
-// void	ft_draw_pixel(t_mlx *mnmap, int x, int y, int color)
-// {
-// 	int	offset;
-// 	offset = (mnmap->line_len * y) + (x * (mnmap->bits_per_pixel / 8));	
+#include "../includes/cub3D.h"
 
-// 	*((unsigned int *)(offset + mnmap->addr)) = color;
-// }
+void	ft_draw_minimap(t_map *map, t_img *mnmap)
+{
+	int	pos_x, pos_y, dx, dy, pixel_x, pixel_y, color;
+	float scale_x;
+	float scale_y;
 
-// void	ft_draw_minimap(t_map *map, t_mlx *mnmap)
-// {
-// 	int	pos_x;
-// 	int	pos_y;
+	scale_x = (float)mnmap->width / map->max_w;
+	scale_y = (float)mnmap->height / map->max_h;
+	pos_y = -1;
+	while (++pos_y < map->max_h)
+	{
+		pos_x = -1;
+		while (++pos_x < map->max_w)
+		{
+			color = (map->map[pos_y][pos_x] == '1') ? RED :
+					(map->map[pos_y][pos_x] == '0') ? WHITE :
+					ft_strchr("NSWE", map->map[pos_y][pos_x]) ? GREEN : BLACK;
+			dy = 0;
+			while (dy < scale_y)
+			{
+				pixel_y = (int)(pos_y * scale_y) + dy++;
+				dx = 0;
+				while (dx < scale_x)
+				{
+					pixel_x = (int)(pos_x * scale_x) + dx++;
+					if (pixel_x < mnmap->width && pixel_y < mnmap->height)
+						mlx_put_pixel(mnmap, pixel_x, pixel_y, color);
+				}
+			}
+		}
+	}
+}
 
-// 	pos_y = -1;
-// 	while (++pos_y < mnmap->height)
-// 	{
-// 		pos_x = -1;
-// 		while (++pos_x < mnmap->width)
-// 		{
-// 			if (map->map[pos_y][pos_x] == '1')
-// 				ft_draw_pixel(mnmap, pos_x, pos_y, RED);
-// 			else if (map->map[pos_y][pos_x] == '0')
-// 				ft_draw_pixel(mnmap, pos_x, pos_y, WHITE);
-// 			else
-// 				ft_draw_pixel(mnmap, pos_x, pos_y, BLACK);
-// 		}
-// 		mlx_put_image_to_window(map->mlx->mlx, map->mlx->window, mnmap->img, pos_x, pos_y);
-// 	}
-// }
 
-// int	ft_minimap(t_map *map)
-// {
-// 	t_mlx mnmap;
+int	ft_minimap(t_map *map, t_minimap *mini)
+{
 
-// 	mnmap.width = 300;
-// 	mnmap.height = 150;
-// 	mnmap.img = mlx_new_image(map->mlx->mlx, mnmap.width, mnmap.height);
-// 	mnmap.addr = mlx_get_data_addr(mnmap.img, &mnmap.bits_per_pixel, &mnmap.line_len, &mnmap.endian);
-// 	ft_draw_minimap(map, &mnmap);
-// 	return (0);
-// }
+	mini->mnmap->width = MINIW;
+	mini->mnmap->height = MINIH;
+	ft_draw_minimap(map, mini->mnmap);
+	return (0);
+}

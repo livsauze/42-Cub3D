@@ -6,6 +6,8 @@ t_map	*ft_clean_init(t_map *map)
 	int	i;
 
 	map->color = 0;
+	map->max_w = -1;
+	map->max_h = -1;
 	map->map_x = -1;
 	map->map_y = -1;
 	map->fd = -1;
@@ -24,6 +26,7 @@ t_map	*ft_clean_init(t_map *map)
 	map->window = NULL;
 	map->mlx = NULL;
 	map->player = NULL;
+	map->mini = NULL;
 	map->texture = NULL;
 	map->ray = NULL;
 	return (map);

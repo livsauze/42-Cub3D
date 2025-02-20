@@ -21,12 +21,31 @@ void	ft_free_all(t_map *map)
 	if (map->map)
 		ft_free_tab(map->map);
 }
-
+void	ft_free_img(t_text *texture)
+{
+	if (texture->wall_no)
+		free(texture->wall_no);
+	if (texture->wall_so)
+		free(texture->wall_so);
+	if (texture->wall_we)
+		free(texture->wall_we);
+	if (texture->wall_ea)
+		free(texture->wall_ea);
+	if (texture->bckg)
+		free(texture->bckg);
+}
 
 void	ft_end(t_map *map)
 {
 	ft_free_all(map);
 	if (map->player)
 		free(map->player);
+	if (map->ray)
+		free(map->ray);
+	if (map->texture)
+	{
+		ft_free_img(map->texture);
+		free(map->texture);
+	}
 	close(map->fd);
 }

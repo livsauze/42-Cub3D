@@ -11,14 +11,17 @@
 # include <X11/X.h>
 # include "../minilibx-linux/mlx.h"
 
-# define WIDTH 1400
-# define HEIGHT 900
+# define WIDTH 800
+# define HEIGHT 500
+# define MINIW 300
+# define MINIH 100
+
 # define BLACK 0x000000
 # define WHITE 0xFFFFFF
 # define RED 0xFF0000
 # define GREEN 0x00FF00
-# define CYAN           0x00FFFF
-# define MAGENTA        0xFF00FF
+# define CYAN 0x00FFFF
+# define MAGENTA 0xFF00FF
 
 typedef struct s_img
 {
@@ -26,9 +29,11 @@ typedef struct s_img
 	void	*img;
 	int		width;
 	int		height;
-	int		bits_per_pixel;
+	int		bpp;
 	int		endian;
 	int		line_len;
+	int		x;
+	int		y;
 }				t_img;
 
 typedef struct s_text
@@ -37,8 +42,17 @@ typedef struct s_text
 	t_img	*wall_no;
 	t_img	*wall_we;
 	t_img	*wall_ea;
+	t_img	*bckg;
 } t_text;
 
+typedef struct s_minimap
+{
+	t_img	*mnmap;
+	int		size;
+	int		offset_x;
+	int		offset_y;
+	int		tile_size;
+}		t_minimap;
 
 typedef struct s_player
 {
@@ -71,13 +85,15 @@ typedef	struct s_ray
 
 typedef struct s_map
 {
-	int color; // color of the wall
-	int	map_x; // position of the current ray in the grid
-	int	map_y;
-	int	err;
-	int	fd;
-	int ceiling[3];
-	int	floor[3];
+	int		max_w;
+	int		max_h;
+	int		color; // color of the wall
+	int 	map_x; // position of the current ray in the grid
+	int 	map_y;
+	int		err;
+	int		fd;
+	int		ceiling[3];
+	int		floor[3];
 	char	**map;
 	char	*no;
 	char	*so;
@@ -85,10 +101,11 @@ typedef struct s_map
 	char	*ea;
 	void	*window;
 	void	*mlx;
-	// t_img	*mlx;
-	t_text	*texture;
-	t_player *player;
-	t_ray	*ray;
+	t_img	*img;
+	t_text		*texture;
+	t_player	*player;
+	t_ray		*ray;
+	t_minimap	*mini;
 }	t_map;
 
 
@@ -96,12 +113,13 @@ typedef struct s_map
 /*************************************INIT*************************************/
 t_map	*ft_init_struct(char *file);
 void	ft_init_mlx(t_map *map);
-void	ft_init_textures(t_map *map);
+void	ft_init_textures(t_map *map, t_text *texture);
 void	ft_start_game(t_map *map);
 void	ft_end(t_map *map);
 void	init_data(t_map *map);
 void	get_dir_player(t_map *map, int x, int y);
 int		ft_init_player(t_map *map, int x, int y, int player);
+int	ft_hook(t_map *map);
 
 /*************************************CHECK*************************************/
 int ft_check_ext(char *file);
@@ -117,9 +135,13 @@ void	ft_err(char *str, t_map *map);
 void	ft_free_tab(char **str);
 int	ft_empty_line(char *str);
 int	ft_tab_len(char **str);
+int	len_map_width(char **map);
+void	ft_draw_bckg(t_map *map, t_img *bckg);
+void	ft_draw_pixel(t_img *img, int x, int y, int color);
+void	my_put_pixel(t_img *img, int x, int y, long color);
 
 /*************************************MINIMAP*************************************/
-int	ft_minimap(t_map *map);
+int	ft_minimap(t_map *map, t_minimap *mini);
 
 // //////////////////////////////////    					////////////////////////////////// //
 									 // Ray casting part //
