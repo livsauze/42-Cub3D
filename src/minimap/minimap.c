@@ -29,6 +29,7 @@ void	ft_draw_minimap(t_map *map, t_minimap *mn, t_img *img)
 	int	dx;
 	int	dy;
 
+	// printf("player pos_x : %f, pos_y : %f\n", map->player->pos_x, map->player->pos_y);
 	pos_y = -1;
 	while (++pos_y < map->max_h)
 	{

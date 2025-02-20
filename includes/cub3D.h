@@ -139,6 +139,7 @@ void	my_put_pixel(t_img *img, int x, int y, long color);
 
 /***********************************MINIMAP**********************************/
 int		ft_minimap(t_map *map, t_minimap *mini);
+void	ft_draw_minimap(t_map *map, t_minimap *mn, t_img *img);
 
 // /////////////////////////    					////////////////////// //
 							// Ray casting part //
@@ -152,6 +153,8 @@ void	ft_malloc_error(void);
 int		ft_close_handler(t_map *map);
 void	ft_events_init(t_map *map);
 int		ft_key_handler(int keysym, t_map *map);
+void	ft_change_map(char **map, t_player *player);
+int		ft_check_wall(char **map, t_player *player, int key);
 
 // //////////////////////////////////  ray  //////////////////////////////// //
 
