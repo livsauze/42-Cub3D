@@ -6,7 +6,7 @@
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 13:20:57 by livsauze          #+#    #+#             */
-/*   Updated: 2025/02/04 17:07:48 by livsauze         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:09:36 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 char	*ft_substr(char const *s, int start, int len)
 {
 	char	*str;
-	int	i;
-	int	j;
-	int	lens;
+	int		i;
+	int		j;
+	int		lens;
 
 	lens = ft_strlen(s);
 	if (start >= lens)

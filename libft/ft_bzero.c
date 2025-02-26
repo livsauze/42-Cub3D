@@ -6,7 +6,7 @@
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 11:42:48 by livsauze          #+#    #+#             */
-/*   Updated: 2025/01/23 16:44:24 by livsauze         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:10:39 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_bzero(void *s, int n)
 {
 	char	*temp;
-	int	i;
+	int		i;
 
 	temp = s;
 	i = 0;

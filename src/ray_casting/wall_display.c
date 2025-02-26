@@ -5,7 +5,7 @@ void	mlx_put_pixel(t_img *img, int x, int y, int color)
 {
 	int	offset;
 
-	offset = (y * img->line_len + (x * (img->bits_per_pixel / 8)));
+	offset = (y * img->line_len + (x * (img->bpp / 8)));
 	*(unsigned int *)(img->addr + offset) = color;
 }
 

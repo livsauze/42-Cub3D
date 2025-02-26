@@ -7,7 +7,7 @@ void	ft_malloc_error(void)
 }
 
 void	ft_window_init(t_map *map)
-{	
+{
 	map->mlx = mlx_init();
 	if (map->mlx == NULL)
 		ft_malloc_error();
@@ -26,8 +26,7 @@ void	ft_window_init(t_map *map)
 	// 	free(map->mlx);
 	// 	ft_malloc_error();
 	// }
-	map->img->addr = mlx_get_data_addr(map->img->img, &map->img->bits_per_pixel,
+	map->img->addr = mlx_get_data_addr(map->img->img, &map->img->bpp,
 			&map->img->line_len, &map->img->endian);
 	ft_events_init(map);
 }
-

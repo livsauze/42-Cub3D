@@ -1,6 +1,6 @@
 #include "../../includes/cub3D.h"
 
-void	ft_get_F(t_map *map, char *line, int i)
+void	ft_get_floor(t_map *map, char *line, int i)
 {
 	char	**tmp;
 	int		j;
@@ -24,7 +24,7 @@ void	ft_get_F(t_map *map, char *line, int i)
 	return ;
 }
 
-void	ft_get_C(t_map *map, char *line, int i)
+void	ft_get_ceiling(t_map *map, char *line, int i)
 {
 	char	**tmp;
 	int		j;
@@ -58,9 +58,9 @@ void	ft_get_color(t_map *map, char *line)
 	while (line[i] && map->err == 0)
 	{
 		if (line[i] && line[i] == 'F')
-			ft_get_F(map, line, i);
+			ft_get_floor(map, line, i);
 		else if (line[i] && line[i] == 'C')
-			ft_get_C(map, line, i);
+			ft_get_ceiling(map, line, i);
 		i++;
 	}
 	return ;

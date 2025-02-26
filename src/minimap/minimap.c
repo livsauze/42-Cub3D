@@ -1,42 +1,61 @@
-// #include "../includes/cub3D.h"
-// void	ft_draw_pixel(t_mlx *mnmap, int x, int y, int color)
-// {
-// 	int	offset;
-// 	offset = (mnmap->line_len * y) + (x * (mnmap->bits_per_pixel / 8));	
+#include "../includes/cub3D.h"
 
-// 	*((unsigned int *)(offset + mnmap->addr)) = color;
-// }
+void	ft_calc_scale(t_map *map, t_img *mnmap)
+{
+	map->mini->scale_x = (float)mnmap->width / map->max_w;
+	map->mini->scale_y = (float)mnmap->height / map->max_h;
+}
 
-// void	ft_draw_minimap(t_map *map, t_mlx *mnmap)
-// {
-// 	int	pos_x;
-// 	int	pos_y;
+int	ft_color(t_map *map, int pos_x, int pos_y)
+{
+	int	color;
 
-// 	pos_y = -1;
-// 	while (++pos_y < mnmap->height)
-// 	{
-// 		pos_x = -1;
-// 		while (++pos_x < mnmap->width)
-// 		{
-// 			if (map->map[pos_y][pos_x] == '1')
-// 				ft_draw_pixel(mnmap, pos_x, pos_y, RED);
-// 			else if (map->map[pos_y][pos_x] == '0')
-// 				ft_draw_pixel(mnmap, pos_x, pos_y, WHITE);
-// 			else
-// 				ft_draw_pixel(mnmap, pos_x, pos_y, BLACK);
-// 		}
-// 		mlx_put_image_to_window(map->mlx->mlx, map->mlx->window, mnmap->img, pos_x, pos_y);
-// 	}
-// }
+	ft_calc_scale(map, map->mini->mnmap);
+	if (map->map[pos_y][pos_x] == '1')
+		color = RED;
+	else if (map->map[pos_y][pos_x] == '0')
+		color = WHITE;
+	else if (ft_strchr("NSWE", map->map[pos_y][pos_x]))
+		color = GREEN;
+	else
+		color = BLACK;
+	return (color);
+}
 
-// int	ft_minimap(t_map *map)
-// {
-// 	t_mlx mnmap;
+void	ft_draw_minimap(t_map *map, t_minimap *mn, t_img *img)
+{
+	int	pos_x;
+	int	pos_y;
+	int	dx;
+	int	dy;
 
-// 	mnmap.width = 300;
-// 	mnmap.height = 150;
-// 	mnmap.img = mlx_new_image(map->mlx->mlx, mnmap.width, mnmap.height);
-// 	mnmap.addr = mlx_get_data_addr(mnmap.img, &mnmap.bits_per_pixel, &mnmap.line_len, &mnmap.endian);
-// 	ft_draw_minimap(map, &mnmap);
-// 	return (0);
-// }
+	// printf("player pos_x : %f, pos_y : %f\n", map->player->pos_x, map->player->pos_y);
+	pos_y = -1;
+	while (++pos_y < map->max_h)
+	{
+		pos_x = -1;
+		while (++pos_x < map->max_w)
+		{
+			mn->color = ft_color(map, pos_x, pos_y);
+			dy = 0;
+			while (dy < mn->scale_y)
+			{
+				mn->pixel_y = (int)(pos_y * mn->scale_y) + dy++;
+				dx = 0;
+				while (dx < mn->scale_x)
+				{
+					mn->pixel_x = (int)(pos_x * mn->scale_x) + dx++;
+					mlx_put_pixel(img, mn->pixel_x, mn->pixel_y, mn->color);
+				}
+			}
+		}
+	}
+}
+
+int	ft_minimap(t_map *map, t_minimap *mini)
+{
+	mini->mnmap->width = MINIW;
+	mini->mnmap->height = MINIH;
+	ft_draw_minimap(map, mini, mini->mnmap);
+	return (0);
+}

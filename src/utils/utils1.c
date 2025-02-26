@@ -30,7 +30,26 @@ int	ft_tab_len(char **str)
 	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 		i++;
 	return (i);
+}
+
+int	len_map_width(char **map)
+{
+	int	max_width;
+	int	i;
+	int	len;
+
+	max_width = 0;
+	i = 0;
+	
+	while(map[i])
+	{
+		len = ft_strlen(map[i]);
+		if (len > max_width)
+			max_width = len;
+		i++;
+	}
+	return(max_width);
 }

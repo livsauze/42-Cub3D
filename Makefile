@@ -24,6 +24,8 @@ SRCS =  $(wildcard $(SRCS_DIR)/*.c) \
 		$(wildcard $(SRCS_DIR)/init/*.c) \
 		$(wildcard $(SRCS_DIR)/ray_casting/*.c) \
 		$(wildcard $(SRCS_DIR)/minimap/*.c) \
+		$(wildcard $(SRCS_DIR)/events/*.c) 
+
 
 OBJS_DIR := obj
 OBJS = $(patsubst $(SRCS_DIR)/%.c, $(OBJS_DIR)/%.o, $(SRCS))
