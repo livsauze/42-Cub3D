@@ -43,13 +43,13 @@ int	len_map_width(char **map)
 
 	max_width = 0;
 	i = 0;
-	while (map[i])
+	
+	while(map[i])
 	{
 		len = ft_strlen(map[i]);
 		if (len > max_width)
 			max_width = len;
 		i++;
 	}
-	max_width--;
-	return (max_width);
+	return(max_width);
 }

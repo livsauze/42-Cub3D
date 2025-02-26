@@ -18,15 +18,15 @@ void	ft_window_init(t_map *map)
 		free(map->mlx);
 		ft_malloc_error();
 	}
-	map->img = mlx_new_image(map->mlx, WIDTH, HEIGHT);
-	// if (map->mlx->img == NULL)
+	map->img->img = mlx_new_image(map->mlx, WIDTH, HEIGHT);
+	// if (map->img->img == NULL)
 	// {
-	// 	mlx_destroy_window(map->mlx->mlx, map->mlx->window);
-	// 	mlx_destroy_display(map->mlx->mlx);
-	// 	free(map->mlx->mlx);
+	// 	mlx_destroy_window(map->mlx, map->window);
+	// 	mlx_destroy_display(map->mlx);
+	// 	free(map->mlx);
 	// 	ft_malloc_error();
 	// }
-	map->img->addr = mlx_get_data_addr(map->img, &map->img->bpp,
+	map->img->addr = mlx_get_data_addr(map->img->img, &map->img->bpp,
 			&map->img->line_len, &map->img->endian);
 	ft_events_init(map);
 }

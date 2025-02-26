@@ -1,12 +1,12 @@
-EA 				./textures/test.xpm
-NO ./textures/test.xpm
-SO ./textures/test.xpm
-WE ./textures/test.xpm
+EA ./textures/wall1.xpm
+NO ./textures/wall2.xpm
+SO ./textures/wall3.xpm
+WE ./textures/wall4.xpm
 				C 255,30,1
 F 220,100,1
 
         1111111111111111111111111
-        1000N00000110000000000001
+        1000000W00110000000000001
         1011000001110000000000001
         1001000000000000000000001
 111111111011000001110000000000001

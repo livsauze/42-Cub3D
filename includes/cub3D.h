@@ -65,8 +65,7 @@ typedef struct s_player
 
 typedef	struct	s_ray
 {
-	double	camera_x; // relative position of a column pixel on the screen
-	double	camera_y;
+	double camera_x; // relative position of a column pixel on the screen
 	double	ray_dir_x; // constant variable. direction of the ray
 	double	ray_dir_y;
 	int		step_x; // constant variable. Direction of the square who need to go. 2 values => -1 and 1 (for left and right)
@@ -79,13 +78,15 @@ typedef	struct	s_ray
 	double	delta_dist_y;
 	int		hit_wall;
 	double	perp_wall_dist; // Distance of the perpendicular line of the camera plane to the wall
-	int		side_wall; // wall is in E/W for 0 and N/S for 1
-}		t_ray;
+	int		side_wall; // wall is in E/W for 0 (x side) and N/S for 1 (y side)
+}				t_ray;
 
 typedef struct s_map
 {
 	int			max_w;
 	int			max_h;
+	int			map_width;
+	int			map_height;
 	int			color; // color of the wall
 	int			map_x; // position of the current ray in the grid
 	int			map_y;
@@ -116,6 +117,9 @@ void	ft_end(t_map *map);
 void	init_data(t_map *map);
 void	get_dir_player(t_map *map, int x, int y);
 int		ft_init_player(t_map *map, int x, int y, int player);
+void	ft_malloc_game(t_map *map);
+int		len_map_width(char **map);
+
 int		ft_hook(t_map *map);
 
 /***********************************CHECK***********************************/
@@ -166,6 +170,6 @@ int		hit_the_wall(t_map *map);
 // /////////////////////////////  wall_display  ///////////////////////////// //
 void	mlx_put_pixel(t_img *img, int x, int y, int color);
 void	draw_vertical_line(int draw_start, int draw_end, t_map *map, int x);
-void	wall_dist(t_map *map, t_player *player, t_ray *ray, int x);
+void	wall_dist(t_map *map, t_ray *ray, int x);
 
 #endif
