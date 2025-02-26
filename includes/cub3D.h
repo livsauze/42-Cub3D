@@ -11,8 +11,8 @@
 # include <X11/X.h>
 # include "../minilibx-linux/mlx.h"
 
-# define WIDTH 1400
-# define HEIGHT 900
+# define WIDTH 800
+# define HEIGHT 500
 # define BLACK 0x000000
 # define WHITE 0xFFFFFF
 # define RED 0xFF0000
