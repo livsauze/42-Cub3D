@@ -11,13 +11,15 @@ int	ft_color(t_map *map, int pos_x, int pos_y)
 	int	color;
 
 	ft_calc_scale(map, map->mini->mnmap);
-	if (map->map[pos_y][pos_x] == '1')
+	if (map->map[pos_y][pos_x] == '\0' || map->map[pos_y][pos_x] == '\n')
+		color = BLACK;
+	else if (map->map[pos_y][pos_x] == '1')
 		color = RED;
 	else if (map->map[pos_y][pos_x] == '0')
 		color = WHITE;
 	else if (ft_strchr("NSWE", map->map[pos_y][pos_x]))
 		color = GREEN;
-	else
+	else if (pos_y <= map->max_h && pos_x <= map->max_w)
 		color = BLACK;
 	return (color);
 }
@@ -29,7 +31,6 @@ void	ft_draw_minimap(t_map *map, t_minimap *mn, t_img *img)
 	int	dx;
 	int	dy;
 
-	// printf("player pos_x : %f, pos_y : %f\n", map->player->pos_x, map->player->pos_y);
 	pos_y = -1;
 	while (++pos_y < map->max_h)
 	{
@@ -56,6 +57,6 @@ int	ft_minimap(t_map *map, t_minimap *mini)
 {
 	mini->mnmap->width = MINIW;
 	mini->mnmap->height = MINIH;
-	ft_draw_minimap(map, mini, mini->mnmap);
+	ft_draw_minimap(map, mini, map->img);
 	return (0);
 }

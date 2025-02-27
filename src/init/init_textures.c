@@ -18,9 +18,6 @@ void	ft_init_textures(t_map *map, t_text *t, t_img *mn)
 	t->wall_no = ft_convert_img(map, t->wall_no, map->no);
 	t->wall_we = ft_convert_img(map, t->wall_we, map->we);
 	t->wall_ea = ft_convert_img(map, t->wall_ea, map->ea);
-	t->bckg->img = mlx_new_image(map->mlx, WIDTH, HEIGHT);
-	t->bckg->addr = mlx_get_data_addr(t->bckg->img, &t->bckg->bpp,
-			&t->bckg->line_len, &t->bckg->endian);
 	mn->img = mlx_new_image(map->mlx, MINIW, MINIH);
 	mn->addr = mlx_get_data_addr(mn->img, &mn->bpp, &mn->line_len, &mn->endian);
 }

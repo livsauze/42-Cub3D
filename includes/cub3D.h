@@ -18,6 +18,11 @@
 
 # define BLACK 0x000000
 # define WHITE 0xFFFFFF
+# define BROWN 0xA52A2A
+# define GREY 0x808080
+# define BEIGE 0xF5F5DC
+# define BRICK 0xB22222
+# define WOOD 0xA0522D
 # define RED 0xFF0000
 # define GREEN 0x00FF00
 # define CYAN 0x00FFFF
@@ -42,7 +47,6 @@ typedef struct s_text
 	t_img	*wall_no;
 	t_img	*wall_we;
 	t_img	*wall_ea;
-	t_img	*bckg;
 }		t_text;
 
 typedef struct s_minimap
@@ -110,15 +114,12 @@ typedef struct s_map
 
 /***********************************INIT***********************************/
 t_map	*ft_init_struct(char *file);
-void	ft_init_mlx(t_map *map);
+int		ft_init_player(t_map *map, int x, int y, int player);
 void	ft_init_textures(t_map *map, t_text *texture, t_img *mn);
 void	ft_start_game(t_map *map);
-void	ft_end(t_map *map);
 void	init_data(t_map *map);
 void	get_dir_player(t_map *map, int x, int y);
-int		ft_init_player(t_map *map, int x, int y, int player);
 void	ft_malloc_game(t_map *map);
-int		len_map_width(char **map);
 
 int		ft_hook(t_map *map);
 
@@ -132,14 +133,16 @@ void	ft_get_color(t_map *map, char *line);
 void	ft_get_text(t_map *map, char *line);
 
 /***********************************UTILS***********************************/
-void	ft_err(char *str, t_map *map);
-void	ft_free_tab(char **str);
 int		ft_empty_line(char *str);
 int		ft_tab_len(char **str);
 int		len_map_width(char **map);
+long	ft_convert_rgb(int r, int g, int b);
+void	ft_err(char *str, t_map *map);
+void	ft_free_tab(char **str);
+void	ft_end(t_map *map);
 void	ft_draw_bckg(t_map *map, t_img *bckg);
 void	ft_draw_pixel(t_img *img, int x, int y, int color);
-void	my_put_pixel(t_img *img, int x, int y, long color);
+void	mlx_put_pixel(t_img *img, int x, int y, int color);
 
 /***********************************MINIMAP**********************************/
 int		ft_minimap(t_map *map, t_minimap *mini);
@@ -157,7 +160,7 @@ void	ft_malloc_error(void);
 int		ft_close_handler(t_map *map);
 void	ft_events_init(t_map *map);
 int		ft_key_handler(int keysym, t_map *map);
-void	ft_change_map(char **map, t_player *player);
+void	ft_change_mnmap(char **map, t_player *player);
 int		ft_check_wall(char **map, t_player *player, int key);
 
 // //////////////////////////////////  ray  //////////////////////////////// //
@@ -168,7 +171,6 @@ void	initial_distance(t_ray *ray, t_player *player, t_map *map);
 int		hit_the_wall(t_map *map);
 
 // /////////////////////////////  wall_display  ///////////////////////////// //
-void	mlx_put_pixel(t_img *img, int x, int y, int color);
 void	draw_vertical_line(int draw_start, int draw_end, t_map *map, int x);
 void	wall_dist(t_map *map, t_ray *ray, int x);
 

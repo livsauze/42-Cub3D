@@ -13,7 +13,7 @@ char	ft_dir_p(t_player *player)
 	return (0);
 }
 
-void	ft_change_map(char **map, t_player *player)
+void	ft_change_mnmap(char **map, t_player *player)
 {
 	int	x;
 	int	y;
@@ -21,7 +21,7 @@ void	ft_change_map(char **map, t_player *player)
 	y = -1;
 	while (map[++y])
 	{
-		x = 0;
+		x = -1;
 		while (map[y][++x])
 		{
 			if (ft_strchr("NSWE", map[y][x]))
@@ -30,7 +30,6 @@ void	ft_change_map(char **map, t_player *player)
 				map[y][x] = ft_dir_p(player);
 		}
 	}
-	y = -1;
 }
 
 int	ft_check_wall(char **map, t_player *player, int key)
