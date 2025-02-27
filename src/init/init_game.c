@@ -23,7 +23,6 @@ void	ft_malloc_game(t_map *map)
 	map->t->wall_so = malloc(sizeof(t_img));
 	map->t->wall_we = malloc(sizeof(t_img));
 	map->t->wall_ea = malloc(sizeof(t_img));
-	map->t->bckg = malloc(sizeof(t_img));
 	map->mini->mnmap = malloc(sizeof(t_img));
 	init_data(map);
 }

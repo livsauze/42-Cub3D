@@ -14,8 +14,6 @@ void	ft_destroy_img(t_map *map, t_text *texture)
 		mlx_destroy_image(map->mlx, texture->wall_we->img);
 	if (texture->wall_ea)
 		mlx_destroy_image(map->mlx, texture->wall_ea->img);
-	if (texture->bckg)
-		mlx_destroy_image(map->mlx, texture->bckg->img);
 }
 
 int	ft_close_handler(t_map *map)
@@ -43,15 +41,15 @@ void	ft_events_init(t_map *map)
 
 void	ft_move(t_map *map, t_player *player, int key)
 {
-	if (key == 119 && !ft_check_wall(map->map, player, key))
-		player->pos_y--;
-	else if (key == 97 && !ft_check_wall(map->map, player, key))
-		player->pos_x--;
-	else if (key == 115  && !ft_check_wall(map->map, player, key))
-		player->pos_y++;
-	else if (key == 100  && !ft_check_wall(map->map, player, key))
-		player->pos_x++;
-	ft_change_map(map->map, map->player);
+	if (key == XK_w && !ft_check_wall(map->map, player, key))
+		player->pos_y -= 0.1;
+	else if (key == XK_a && !ft_check_wall(map->map, player, key))
+		player->pos_x -= 0.1;
+	else if (key == XK_s  && !ft_check_wall(map->map, player, key))
+		player->pos_y += 0.1;
+	else if (key == XK_d  && !ft_check_wall(map->map, player, key))
+		player->pos_x += 0.1;
+	// ft_change_mnmap(map->map, map->player);
 }
 
 int	ft_key_handler(int keysym, t_map *map)
@@ -60,9 +58,10 @@ int	ft_key_handler(int keysym, t_map *map)
 	{
 		ft_close_handler(map);
 	}
-	else if (keysym == 119 || keysym == 97 || keysym == 115
-		|| keysym == 100 || keysym == XK_Left || keysym == XK_Right)
+	else if (keysym == XK_w || keysym == XK_s || keysym == XK_a
+		|| keysym == XK_d || keysym == XK_Left || keysym == XK_Right)
 		ft_move(map, map->player, keysym);
-	ft_hook(map);
+	// printf("player x : %f, player y : %f\n", map->player->pos_x, map->player->pos_y);
+	// ft_hook(map);
 	return (0);
 }

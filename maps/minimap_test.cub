@@ -2,10 +2,10 @@ EA ./textures/wall1.xpm
 NO ./textures/wall2.xpm
 SO ./textures/wall3.xpm
 WE ./textures/wall4.xpm
-				C 52,232,235
+C 52,232,235
 F 82,235,52
 
 
-111111111
-100N00001
-111111111
+111111111111
+1000E00001
+111111111111

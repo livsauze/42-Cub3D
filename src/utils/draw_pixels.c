@@ -1,14 +1,11 @@
 #include "../../includes/cub3D.h"
 
-void	my_put_pixel(t_img *img, int x, int y, long color)
+void	mlx_put_pixel(t_img *img, int x, int y, int color)
 {
-	char	*pixel;
+	int	offset;
 
-	if (x >= 0 && x < WIDTH && y > 0 && y <= HEIGHT)
-	{
-		pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
-		*(int *)pixel = color;
-	}
+	offset = (y * img->line_len + (x * (img->bpp / 8)));
+	*(unsigned int *)(img->addr + offset) = color;
 }
 
 long	ft_convert_rgb(int r, int g, int b)
@@ -16,7 +13,7 @@ long	ft_convert_rgb(int r, int g, int b)
 	return (r * 256 * 256 + g * 256 + b);
 }
 
-void	ft_draw_bckg(t_map *map, t_img *bckg)
+void	ft_draw_bckg(t_map *map, t_img *img)
 {
 	int		x;
 	int		y;
@@ -29,7 +26,7 @@ void	ft_draw_bckg(t_map *map, t_img *bckg)
 		x = 0;
 		while (x < WIDTH)
 		{
-			my_put_pixel(bckg, x, y, color);
+			mlx_put_pixel(img, x, y, color);
 			x++;
 		}
 		y++;
