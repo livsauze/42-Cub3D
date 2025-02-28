@@ -5,8 +5,6 @@ void	init_data(t_map *map)
 	map->max_h = ft_tab_len(map->map);
 	map->max_w = len_map_width(map->map);
 	map->ray->camera_x = 0.0;
-	// map->ray->plane_x = 0.0;
-	// map->ray->plane_y = 0.66; // great angle to the fps
 	map->map_x = (int)map->player->pos_x; // Same position because the display ray begin at the position of the player 
 	map->map_y = (int)map->player->pos_y; // cast to int to have the cell of the current ray. exemple if pos_x = 5,7 => ray_x = 5
 	map->ray->delta_dist_x = fabs(1 / map->ray->ray_dir_x);
