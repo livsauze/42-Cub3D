@@ -22,6 +22,10 @@
 # define LEFT 97
 # define RIGHT 100
 
+# define ROT_SPEED 0.1
+# define MOV_PLAYER 0.1
+# define FOV_ANGLE 0.66
+
 # define BLACK 0x000000
 # define WHITE 0xFFFFFF
 # define BROWN 0xA52A2A
@@ -167,6 +171,10 @@ void	ft_events_init(t_map *map);
 int		ft_key_handler(int keysym, t_map *map);
 void	ft_change_mnmap(char **map, t_player *player);
 int		ft_check_wall(char **map, t_player *player, int key);
+void	ft_move(t_map *map, t_player *player, int key);
+void	rotation_player(t_map *map, t_player *player, double theta);
+void	front_mov(t_player *player, int key);
+void	side_mov(t_map *map, t_player *player, int key);
 
 // //////////////////////////////////  ray  //////////////////////////////// //
 void	ray_casting(t_ray *ray, t_player *player, t_map *map);

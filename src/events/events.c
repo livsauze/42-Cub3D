@@ -39,19 +39,6 @@ void	ft_events_init(t_map *map)
 	mlx_hook(map->window, 17, (1L << 17), ft_close_handler, map);
 }
 
-void	ft_move(t_map *map, t_player *player, int key)
-{
-	if (key == UP && !ft_check_wall(map->map, player, key))
-		player->pos_y -= 0.1;
-	else if (key == LEFT && !ft_check_wall(map->map, player, key))
-		player->pos_x -= 0.1;
-	else if (key == DOWN  && !ft_check_wall(map->map, player, key))
-		player->pos_y += 0.1;
-	else if (key == RIGHT  && !ft_check_wall(map->map, player, key))
-		player->pos_x += 0.1;
-	// ft_change_mnmap(map->map, map->player);
-}
-
 int	ft_key_handler(int keysym, t_map *map)
 {
 	if (keysym == XK_Escape)
