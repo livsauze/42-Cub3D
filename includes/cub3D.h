@@ -25,6 +25,7 @@
 # define ROT_SPEED 0.1
 # define MOV_PLAYER 0.1
 # define FOV_ANGLE 0.66
+# define COLLISION_MARGIN 0.3
 
 # define BLACK 0x000000
 # define WHITE 0xFFFFFF
@@ -173,7 +174,7 @@ void	ft_change_mnmap(char **map, t_player *player);
 int		ft_check_wall(char **map, t_player *player, int key);
 void	ft_move(t_map *map, t_player *player, int key);
 void	rotation_player(t_map *map, t_player *player, double theta);
-void	front_mov(t_player *player, int key);
+void	front_mov(t_map *map, t_player *player, int key);
 void	side_mov(t_map *map, t_player *player, int key);
 
 // //////////////////////////////////  ray  //////////////////////////////// //

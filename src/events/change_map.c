@@ -32,27 +32,27 @@ void	ft_change_mnmap(char **map, t_player *player)
 	}
 }
 
-int	ft_check_wall(char **map, t_player *player, int key)
-{
-	if (key == 119)
-	{
-		if (map[(int)player->pos_y - 1][(int)player->pos_x] == '1')
-			return (1);
-	}
-	else if (key == 97)
-	{
-		if (map[(int)player->pos_y][(int)player->pos_x - 1] == '1')
-			return (1);
-	}
-	else if (key == 115)
-	{
-		if (map[(int)player->pos_y + 1][(int)player->pos_x] == '1')
-			return (1);
-	}
-	else if (key == 100)
-	{
-		if (map[(int)player->pos_y][(int)player->pos_x + 1] == '1')
-			return (1);
-	}
-	return (0);
-}
+// int	ft_check_wall(char **map, t_player *player, int key)
+// {
+// 	if (key == 119)
+// 	{
+// 		if (map[(int)(player->pos_y - MOV_PLAYER)][(int)player->pos_x] == '1')
+// 			return (1);
+// 	}
+// 	else if (key == 97)
+// 	{
+// 		if (map[(int)player->pos_y][(int)(player->pos_x - MOV_PLAYER)] == '1')
+// 			return (1);
+// 	}
+// 	else if (key == 115)
+// 	{
+// 		if (map[(int)(player->pos_y + MOV_PLAYER)][(int)player->pos_x] == '1')
+// 			return (1);
+// 	}
+// 	else if (key == 100)
+// 	{
+// 		if (map[(int)player->pos_y][(int)(player->pos_x + MOV_PLAYER)] == '1')
+// 			return (1);
+// 	}
+// 	return (0);
+// }
