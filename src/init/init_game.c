@@ -57,6 +57,7 @@ void	get_dir_player(t_map *map, int x, int y)
 		map->player->dir_x = 1.0;
 		map->player->dir_y = 0.0;
 	}
+	map->map[y][x] = 'P';
 	map->ray->plane_x = -(map->player->dir_y * 0.66);
 	map->ray->plane_y = map->player->dir_x * 0.66;
 }

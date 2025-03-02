@@ -17,7 +17,7 @@ int	ft_color(t_map *map, int pos_x, int pos_y)
 		color = RED;
 	else if (map->map[pos_y][pos_x] == '0')
 		color = WHITE;
-	else if (ft_strchr("NSWE", map->map[pos_y][pos_x]))
+	else if (map->map[pos_y][pos_x] == 'P')
 		color = GREEN;
 	else if (pos_y <= map->max_h && pos_x <= map->max_w)
 		color = BLACK;

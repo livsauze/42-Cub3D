@@ -2,8 +2,8 @@
 
 void	ft_destroy_img(t_map *map, t_text *texture)
 {
-	// if (map->img->img)
-	// 	mlx_destroy_image(map->mlx, map->img->img);
+	if (map->img->img)
+		mlx_destroy_image(map->mlx, map->img->img);
 	if (map->mini->mnmap)
 		mlx_destroy_image(map->mlx, map->mini->mnmap->img);
 	if (texture->wall_so)

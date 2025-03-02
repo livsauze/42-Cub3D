@@ -71,5 +71,5 @@ void	ft_move(t_map *map, t_player *player, int key)
 		front_mov(map, player, key);
 	else if ((key == LEFT || key == RIGHT))
 		side_mov(map, player, key);	
-	// ft_change_mnmap(map->map, map->player);
+	ft_change_mnmap(map->map, map->player);
 }
