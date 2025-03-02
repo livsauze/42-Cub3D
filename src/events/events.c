@@ -39,22 +39,14 @@ void	ft_events_init(t_map *map)
 	mlx_hook(map->window, 17, (1L << 17), ft_close_handler, map);
 }
 
-
-
-
-
-
-
 int	ft_key_handler(int keysym, t_map *map)
 {
 	if (keysym == XK_Escape)
 	{
 		ft_close_handler(map);
 	}
-	else if (keysym == XK_w || keysym == XK_s || keysym == XK_a
-		|| keysym == XK_d || keysym == XK_Left || keysym == XK_Right)
+	else if (keysym == UP || keysym == DOWN || keysym == LEFT
+		|| keysym == RIGHT || keysym == XK_Left || keysym == XK_Right)
 		ft_move(map, map->player, keysym);
-	// printf("player x : %f, player y : %f\n", map->player->pos_x, map->player->pos_y);
-	// ft_hook(map);
 	return (0);
 }

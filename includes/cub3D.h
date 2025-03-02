@@ -15,6 +15,12 @@
 # define HEIGHT 500
 # define MINIW 180
 # define MINIH 80
+# define TILE_SIZE 64
+
+# define UP 119
+# define DOWN 115
+# define LEFT 97
+# define RIGHT 100
 
 # define ROT_SPEED 0.1
 # define MOV_PLAYER 0.1
@@ -41,8 +47,7 @@ typedef struct s_img
 	int		bpp;
 	int		endian;
 	int		line_len;
-	int		x;
-	int		y;
+	int		*wall;
 }		t_img;
 
 typedef struct s_text
@@ -172,7 +177,6 @@ void	front_mov(t_player *player, int key);
 void	side_mov(t_map *map, t_player *player, int key);
 
 // //////////////////////////////////  ray  //////////////////////////////// //
-
 void	ray_casting(t_ray *ray, t_player *player, t_map *map);
 void	dda_algo(t_ray *ray, t_player *player, t_map *map, int x);
 void	initial_distance(t_ray *ray, t_player *player, t_map *map);

@@ -51,9 +51,9 @@ void	ft_move(t_map *map, t_player *player, int key)
 		rotation_player(map, player, -ROT_SPEED);
 	else if (key == XK_Right && !ft_check_wall(map->map, player, key))
 		rotation_player(map, player, ROT_SPEED);
-	else if ((key == XK_w || key == XK_s) && !ft_check_wall(map->map, player, key))
+	else if ((key == UP || key == DOWN) && !ft_check_wall(map->map, player, key))
 		front_mov(player, key);
-	else if ((key == XK_a || key == XK_d) && !ft_check_wall(map->map, player, key))
+	else if ((key == LEFT || key == RIGHT) && !ft_check_wall(map->map, player, key))
 		side_mov(map, player, key);	
 	// ft_change_mnmap(map->map, map->player);
 }
