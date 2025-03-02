@@ -41,13 +41,13 @@ void	ft_events_init(t_map *map)
 
 void	ft_move(t_map *map, t_player *player, int key)
 {
-	if (key == XK_w && !ft_check_wall(map->map, player, key))
+	if (key == UP && !ft_check_wall(map->map, player, key))
 		player->pos_y -= 0.1;
-	else if (key == XK_a && !ft_check_wall(map->map, player, key))
+	else if (key == LEFT && !ft_check_wall(map->map, player, key))
 		player->pos_x -= 0.1;
-	else if (key == XK_s  && !ft_check_wall(map->map, player, key))
+	else if (key == DOWN  && !ft_check_wall(map->map, player, key))
 		player->pos_y += 0.1;
-	else if (key == XK_d  && !ft_check_wall(map->map, player, key))
+	else if (key == RIGHT  && !ft_check_wall(map->map, player, key))
 		player->pos_x += 0.1;
 	// ft_change_mnmap(map->map, map->player);
 }
@@ -58,10 +58,8 @@ int	ft_key_handler(int keysym, t_map *map)
 	{
 		ft_close_handler(map);
 	}
-	else if (keysym == XK_w || keysym == XK_s || keysym == XK_a
-		|| keysym == XK_d || keysym == XK_Left || keysym == XK_Right)
+	else if (keysym == UP || keysym == DOWN || keysym == LEFT
+		|| keysym == RIGHT || keysym == XK_Left || keysym == XK_Right)
 		ft_move(map, map->player, keysym);
-	// printf("player x : %f, player y : %f\n", map->player->pos_x, map->player->pos_y);
-	// ft_hook(map);
 	return (0);
 }

@@ -15,6 +15,12 @@
 # define HEIGHT 500
 # define MINIW 180
 # define MINIH 80
+# define TILE_SIZE 64
+
+# define UP 119
+# define DOWN 115
+# define LEFT 97
+# define RIGHT 100
 
 # define BLACK 0x000000
 # define WHITE 0xFFFFFF
@@ -37,8 +43,7 @@ typedef struct s_img
 	int		bpp;
 	int		endian;
 	int		line_len;
-	int		x;
-	int		y;
+	int		*wall;
 }		t_img;
 
 typedef struct s_text
@@ -164,7 +169,6 @@ void	ft_change_mnmap(char **map, t_player *player);
 int		ft_check_wall(char **map, t_player *player, int key);
 
 // //////////////////////////////////  ray  //////////////////////////////// //
-
 void	ray_casting(t_ray *ray, t_player *player, t_map *map);
 void	dda_algo(t_ray *ray, t_player *player, t_map *map, int x);
 void	initial_distance(t_ray *ray, t_player *player, t_map *map);
