@@ -25,7 +25,7 @@
 # define ROT_SPEED 0.1
 # define MOV_PLAYER 0.1
 # define FOV_ANGLE 0.66
-# define COLLISION_MARGIN 0.3
+# define COLLISION_MARGIN 0.2
 
 # define BLACK 0x000000
 # define WHITE 0xFFFFFF
@@ -181,7 +181,7 @@ void	side_mov(t_map *map, t_player *player, int key);
 void	ray_casting(t_ray *ray, t_player *player, t_map *map);
 void	dda_algo(t_ray *ray, t_player *player, t_map *map, int x);
 void	initial_distance(t_ray *ray, t_player *player, t_map *map);
-int		hit_the_wall(t_map *map);
+int		hit_the_wall(t_map *map, double new_x, double new_y);
 
 // /////////////////////////////  wall_display  ///////////////////////////// //
 void	draw_vertical_line(int draw_start, int draw_end, t_map *map, int x);

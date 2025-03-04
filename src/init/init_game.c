@@ -30,6 +30,7 @@ void	ft_start_game(t_map *map)
 {
 	ft_malloc_game(map);
 	ft_window_init(map);
+	// mlx_do_key_autorepeaton(map->mlx); to do
 	ft_init_textures(map, map->t, map->mini->mnmap);
 	mlx_loop_hook(map->mlx, ft_hook, map);
 	mlx_loop(map->mlx);
