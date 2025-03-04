@@ -18,6 +18,30 @@ void	rotation_player(t_map *map, t_player *player, double theta)
 	map->ray->plane_y = old_plane_x * sin(theta) + map->ray->plane_y * cos(theta);
 }
 
+int	hit_the_wall(t_map *map, double new_x, double new_y)
+{
+	double	top;
+	double	bottom;
+	double	left;
+	double	right;
+
+	top = new_y - COLLISION_MARGIN;
+	bottom = new_y + COLLISION_MARGIN;
+	left = new_x - COLLISION_MARGIN;
+	right = new_x + COLLISION_MARGIN;
+
+	if (map->map[(int)top][(int)left] == '1')
+		return(1);
+	if (map->map[(int)top][(int)right] == '1')
+		return(1);
+	if (map->map[(int)bottom][(int)left] == '1')
+		return(1);
+	if (map->map[(int)bottom][(int)right] == '1')
+		return(1);
+	return(0);
+
+}
+
 void	front_mov(t_map *map, t_player *player, int key)
 {
 	double	new_x;
@@ -33,7 +57,7 @@ void	front_mov(t_map *map, t_player *player, int key)
 		new_x = player->pos_x - player->dir_x * MOV_PLAYER;
 		new_y = player->pos_y - player->dir_y * MOV_PLAYER;
 	}
-	if (map->map[(int)(new_y + COLLISION_MARGIN)][(int)(new_x + COLLISION_MARGIN)] != '1') 
+	if (hit_the_wall(map, new_x, new_y) == 0) 
 	{
 		player->pos_x = new_x;
 		player->pos_y = new_y;
@@ -54,7 +78,7 @@ void	side_mov(t_map *map, t_player *player, int key)
 		new_x = player->pos_x - map->ray->plane_x * MOV_PLAYER;
 		new_y = player->pos_y - map->ray->plane_y * MOV_PLAYER;
 	}
-	if (map->map[(int)(new_y + COLLISION_MARGIN)][(int)(new_x + COLLISION_MARGIN)] != '1') 
+	if (hit_the_wall(map, new_x, new_y) == 0) 
 	{
 		player->pos_x = new_x;
 		player->pos_y = new_y;
