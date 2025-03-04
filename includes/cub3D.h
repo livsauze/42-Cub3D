@@ -93,6 +93,7 @@ typedef	struct	s_ray
 	int		hit_wall;
 	double	perp_wall_dist; // Distance of the perpendicular line of the camera plane to the wall
 	int		side_wall; // wall is in E/W for 0 (x side) and N/S for 1 (y side)
+	int		line_height;
 }				t_ray;
 
 typedef struct s_map
