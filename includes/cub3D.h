@@ -22,7 +22,7 @@
 # define LEFT 97
 # define RIGHT 100
 
-# define ROT_SPEED 0.01
+# define ROT_SPEED 0.015
 # define MOV_PLAYER 0.01
 # define FOV_ANGLE 0.66
 # define COLLISION_MARGIN 0.2

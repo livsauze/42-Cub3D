@@ -89,13 +89,13 @@ void	ft_move(t_map *map, t_player *player)
 {
 	if (map->key_states[XK_Left] == 1)
 		rotation_player(map, player, -ROT_SPEED);
-	else if (map->key_states[XK_Right] == 1)
+	if (map->key_states[XK_Right] == 1)
 		rotation_player(map, player, ROT_SPEED);
-	else if ((map->key_states[UP] == 1 || map->key_states[DOWN] == 1))
+	if ((map->key_states[UP] == 1 || map->key_states[DOWN] == 1))
 		front_mov(map, player);
-	else if ((map->key_states[LEFT] == 1 || map->key_states[RIGHT] == 1))
+	if ((map->key_states[LEFT] == 1 || map->key_states[RIGHT] == 1))
 		side_mov(map, player);	
-	else if (map->key_states[XK_Escape] == 1)
+	if (map->key_states[XK_Escape] == 1)
 		ft_close_handler(map);
 	ft_change_mnmap(map->map, map->player);
 }
