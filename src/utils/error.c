@@ -31,13 +31,25 @@ void	ft_free_all(t_map *map)
 void	ft_free_img(t_text *texture)
 {
 	if (texture->wall_no)
+	{
+		free(texture->wall_no->wall);
 		free(texture->wall_no);
+	}
 	if (texture->wall_so)
+	{
+		free(texture->wall_so->wall);
 		free(texture->wall_so);
+	}
 	if (texture->wall_we)
+	{
+		free(texture->wall_we->wall);
 		free(texture->wall_we);
+	}
 	if (texture->wall_ea)
+	{
+		free(texture->wall_ea->wall);
 		free(texture->wall_ea);
+	}
 }
 
 void	ft_end(t_map *map)

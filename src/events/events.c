@@ -2,18 +2,19 @@
 
 void	ft_destroy_img(t_map *map, t_text *texture)
 {
+	(void)texture;
 	if (map->img->img)
 		mlx_destroy_image(map->mlx, map->img->img);
 	if (map->mini->mnmap)
 		mlx_destroy_image(map->mlx, map->mini->mnmap->img);
-	if (texture->wall_so)
-		mlx_destroy_image(map->mlx, texture->wall_so->img);
-	if (texture->wall_no)
-		mlx_destroy_image(map->mlx, texture->wall_no->img);
-	if (texture->wall_we)
-		mlx_destroy_image(map->mlx, texture->wall_we->img);
-	if (texture->wall_ea)
-		mlx_destroy_image(map->mlx, texture->wall_ea->img);
+	// if (texture->wall_so)
+	// 	mlx_destroy_image(map->mlx, texture->wall_so->img);
+	// if (texture->wall_no)
+	// 	mlx_destroy_image(map->mlx, texture->wall_no->img);
+	// if (texture->wall_we)
+	// 	mlx_destroy_image(map->mlx, texture->wall_we->img);
+	// if (texture->wall_ea)
+	// 	mlx_destroy_image(map->mlx, texture->wall_ea->img);
 }
 
 int	ft_close_handler(t_map *map)
@@ -35,12 +36,20 @@ int	ft_close_handler(t_map *map)
 
 int	key_press(int keycode, t_map *map)
 {
-	map->key_states[keycode] = 1;
+	int	key;
+
+	key = convert_key(keycode);
+	if (key >= 0)
+		map->key_states[key] = 1;
 	return (0);
 }
 int	key_release(int keycode, t_map *map)
 {
-	map->key_states[keycode] = 0;
+	int	key;
+
+	key = convert_key(keycode);
+	if (key >= 0)
+		map->key_states[key] = 0;
 	return (0);
 }
 

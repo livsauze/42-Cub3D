@@ -41,43 +41,41 @@ int	hit_the_wall(t_map *map, double new_x, double new_y)
 	return(0);
 
 }
+void	back_mov(t_map *map, t_player *player)
+{
+	double	new_x;
+	double	new_y;
+
+	new_x = player->pos_x - player->dir_x * MOV_PLAYER;
+	new_y = player->pos_y - player->dir_y * MOV_PLAYER;
+	if (hit_the_wall(map, new_x, new_y) == 0) 
+	{
+		player->pos_x = new_x;
+		player->pos_y = new_y;
+	}
+}
 
 void	front_mov(t_map *map, t_player *player)
 {
 	double	new_x;
 	double	new_y;
 
-	if (map->key_states[UP] == 1) // Avancer
-	{
-		new_x = player->pos_x + player->dir_x * MOV_PLAYER;
-		new_y = player->pos_y + player->dir_y * MOV_PLAYER;
-	}
-	else // Reculer
-	{
-		new_x = player->pos_x - player->dir_x * MOV_PLAYER;
-		new_y = player->pos_y - player->dir_y * MOV_PLAYER;
-	}
+	new_x = player->pos_x + player->dir_x * MOV_PLAYER;
+	new_y = player->pos_y + player->dir_y * MOV_PLAYER;
 	if (hit_the_wall(map, new_x, new_y) == 0) 
 	{
 		player->pos_x = new_x;
 		player->pos_y = new_y;
 	}
 }
-void	side_mov(t_map *map, t_player *player)
+
+void	right_mov(t_map *map, t_player *player)
 {
 	double	new_x;
 	double	new_y;
 
-	if (map->key_states[RIGHT] == 1) // Déplacement latéral à droite
-	{
-		new_x = player->pos_x + map->ray->plane_x * MOV_PLAYER;
-		new_y = player->pos_y + map->ray->plane_y * MOV_PLAYER;
-	}
-	else // Déplacement latéral à gauche
-	{
-		new_x = player->pos_x - map->ray->plane_x * MOV_PLAYER;
-		new_y = player->pos_y - map->ray->plane_y * MOV_PLAYER;
-	}
+	new_x = player->pos_x + map->ray->plane_x * MOV_PLAYER;
+	new_y = player->pos_y + map->ray->plane_y * MOV_PLAYER;
 	if (hit_the_wall(map, new_x, new_y) == 0) 
 	{
 		player->pos_x = new_x;
@@ -85,17 +83,36 @@ void	side_mov(t_map *map, t_player *player)
 	}
 }
 
-void	ft_move(t_map *map, t_player *player)
+void	left_mov(t_map *map, t_player *player)
 {
-	if (map->key_states[XK_Left] == 1)
+	double	new_x;
+	double	new_y;
+
+	new_x = player->pos_x - map->ray->plane_x * MOV_PLAYER;
+	new_y = player->pos_y - map->ray->plane_y * MOV_PLAYER;
+
+	if (hit_the_wall(map, new_x, new_y) == 0) 
+	{
+		player->pos_x = new_x;
+		player->pos_y = new_y;
+	}
+}
+
+void	ft_move(t_map *map, t_player *player, int *keystate)
+{
+	if (keystate[4] == 1)
 		rotation_player(map, player, -ROT_SPEED);
-	if (map->key_states[XK_Right] == 1)
+	if (keystate[5] == 1)
 		rotation_player(map, player, ROT_SPEED);
-	if ((map->key_states[UP] == 1 || map->key_states[DOWN] == 1))
+	if (keystate[0] == 1)
 		front_mov(map, player);
-	if ((map->key_states[LEFT] == 1 || map->key_states[RIGHT] == 1))
-		side_mov(map, player);	
-	if (map->key_states[XK_Escape] == 1)
+	if (keystate[2] == 1)
+		back_mov(map, player);
+	if (keystate[1] == 1)
+		left_mov(map, player);	
+	if (keystate[3] == 1)
+		right_mov(map, player);	
+	if (keystate[6] == 1)
 		ft_close_handler(map);
 	ft_change_mnmap(map->map, map->player);
 }

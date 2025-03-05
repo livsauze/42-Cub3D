@@ -11,6 +11,10 @@ int	ft_color(t_map *map, int pos_x, int pos_y)
 	int	color;
 
 	ft_calc_scale(map, map->mini->mnmap);
+	if (pos_y < 0 || pos_y >= map->max_h || !map->map[pos_y])
+		return (BLACK);
+	if (pos_x < 0 || pos_x >= ft_strlen(map->map[pos_y]))
+		return (BLACK);
 	if (map->map[pos_y][pos_x] == '\0' || map->map[pos_y][pos_x] == '\n')
 		color = BLACK;
 	else if (map->map[pos_y][pos_x] == '1')
@@ -19,10 +23,12 @@ int	ft_color(t_map *map, int pos_x, int pos_y)
 		color = WHITE;
 	else if (map->map[pos_y][pos_x] == 'P')
 		color = GREEN;
-	else if (pos_y <= map->max_h && pos_x <= map->max_w)
+	else
 		color = BLACK;
+	
 	return (color);
 }
+
 
 void	ft_draw_minimap(t_map *map, t_minimap *mn, t_img *img)
 {

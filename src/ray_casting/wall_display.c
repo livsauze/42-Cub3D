@@ -30,7 +30,6 @@ void	draw_textured_wall(int draw_start, int draw_end, t_map *map, int x, t_img *
 {
 	int		y;
 	int		d;
-	int		color;
 	int		tex_x;
 	int		tex_y;
 	double	wall_x;
@@ -46,8 +45,8 @@ void	draw_textured_wall(int draw_start, int draw_end, t_map *map, int x, t_img *
 	{
 		d = y * 256 - HEIGHT * 128 + map->ray->line_height * 128;
         tex_y = ((d * texture->height) / map->ray->line_height) / 256;
-		color = ((int *)texture->addr)[tex_y * texture->width + tex_x];
-		mlx_put_pixel(map->img, x, y, color);
+		map->color = texture->wall[tex_y * texture->width + tex_x];
+		mlx_put_pixel(map->img, x, y, map->color);
 		y++;
 	}
 }

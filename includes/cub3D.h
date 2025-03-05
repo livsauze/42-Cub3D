@@ -29,15 +29,9 @@
 
 # define BLACK 0x000000
 # define WHITE 0xFFFFFF
-# define BROWN 0xA52A2A
-# define GREY 0x808080
-# define BEIGE 0xF5F5DC
-# define BRICK 0xB22222
-# define WOOD 0xA0522D
 # define RED 0xFF0000
 # define GREEN 0x00FF00
 # define CYAN 0x00FFFF
-# define MAGENTA 0xFF00FF
 
 typedef struct s_img
 {
@@ -98,7 +92,6 @@ typedef	struct	s_ray
 
 typedef struct s_map
 {
-	int			key_states[256];
 	int			max_w;
 	int			max_h;
 	int			map_width;
@@ -108,6 +101,7 @@ typedef struct s_map
 	int			map_y;
 	int			err;
 	int			fd;
+	int			key_states[8];
 	int			ceiling[3];
 	int			floor[3];
 	char		**map;
@@ -148,6 +142,7 @@ void	ft_get_text(t_map *map, char *line);
 int		ft_empty_line(char *str);
 int		ft_tab_len(char **str);
 int		len_map_width(char **map);
+int	convert_key(int key);
 long	ft_convert_rgb(int r, int g, int b);
 void	ft_err(char *str, t_map *map);
 void	ft_free_tab(char **str);
@@ -174,10 +169,7 @@ void	ft_events_init(t_map *map);
 int		ft_key_handler(/*int keysym, */t_map *map);
 void	ft_change_mnmap(char **map, t_player *player);
 int		ft_check_wall(char **map, t_player *player, int key);
-void	ft_move(t_map *map, t_player *player);
-void	rotation_player(t_map *map, t_player *player, double theta);
-void	front_mov(t_map *map, t_player *player);
-void	side_mov(t_map *map, t_player *player);
+void	ft_move(t_map *map, t_player *player,int *keystate);
 
 // //////////////////////////////////  ray  //////////////////////////////// //
 void	ray_casting(t_ray *ray, t_player *player, t_map *map);
