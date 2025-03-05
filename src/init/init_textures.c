@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_textures.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: estepere <estepere@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/05 22:01:53 by estepere          #+#    #+#             */
+/*   Updated: 2025/03/05 22:02:11 by estepere         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3D.h"
 
 void	ft_store_t_pixels(t_img *img, int *wall)
@@ -13,7 +25,8 @@ void	ft_store_t_pixels(t_img *img, int *wall)
 		while (++x < img->width)
 		{
 			index = img->width * y + x;
-			wall[index] = *(int *)(img->addr + (y * img->line_len + x * (img->bpp / 8)));
+			wall[index] = *(int *)(img->addr
+					+ (y * img->line_len + x * (img->bpp / 8)));
 		}
 	}
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: estepere <estepere@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/05 22:38:29 by estepere          #+#    #+#             */
+/*   Updated: 2025/03/05 22:41:49 by estepere         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -65,29 +77,29 @@ typedef struct s_minimap
 
 typedef struct s_player
 {
-	double	pos_x; // Position of the player
+	double	pos_x;
 	double	pos_y;
-	double	dir_x; // Direction of the player
+	double	dir_x;
 	double	dir_y;
 }		t_player;
 
-typedef	struct	s_ray
+typedef struct s_ray
 {
-	double camera_x; // relative position of a column pixel on the screen
-	double	ray_dir_x; // constant variable. direction of the ray
+	double	camera_x;
+	double	ray_dir_x;
 	double	ray_dir_y;
-	int		step_x; // constant variable. Direction of the square who need to go. 2 values => -1 and 1 (for left and right)
-	int		step_y; // 2 values -1 and 1 for (low and high)
-	double	plane_x; // x position of the plane (camera), plane is perpandicular to the direction of the payer
+	int		step_x;
+	int		step_y;
+	double	plane_x;
 	double	plane_y;
-	double	side_dist_x; // initialy distance (base on player position) of the ray must travel to the next vertical line of the square
+	double	side_dist_x;
 	double	side_dist_y;
-	double	delta_dist_x; // constant variable. distance (base between 2 vertical ligne of the square) between 2 square of the grid (map) in x side (allow to increment side_x)
+	double	delta_dist_x;
 	double	delta_dist_y;
 	int		hit_wall;
-	double	perp_wall_dist; // Distance of the perpendicular line of the camera plane to the wall
-	int		side_wall; // wall is in E/W for 0 (x side) and N/S for 1 (y side)
-	int		line_height;
+	double	perp_w_d;
+	int		side_wall;
+	int		line_h;
 }				t_ray;
 
 typedef struct s_map
@@ -96,8 +108,8 @@ typedef struct s_map
 	int			max_h;
 	int			map_width;
 	int			map_height;
-	int			color; // color of the wall
-	int			map_x; // position of the current ray in the grid
+	int			color;
+	int			map_x;
 	int			map_y;
 	int			err;
 	int			fd;
@@ -111,6 +123,7 @@ typedef struct s_map
 	char		*ea;
 	void		*window;
 	void		*mlx;
+	t_img		*cur_t;
 	t_img		*img;
 	t_text		*t;
 	t_player	*player;
@@ -142,7 +155,7 @@ void	ft_get_text(t_map *map, char *line);
 int		ft_empty_line(char *str);
 int		ft_tab_len(char **str);
 int		len_map_width(char **map);
-int	convert_key(int key);
+int		convert_key(int key);
 long	ft_convert_rgb(int r, int g, int b);
 void	ft_err(char *str, t_map *map);
 void	ft_free_tab(char **str);
@@ -166,10 +179,19 @@ void	ft_malloc_error(void);
 // ///////////////////////////////  events  /////////////////////////////// //
 int		ft_close_handler(t_map *map);
 void	ft_events_init(t_map *map);
-int		ft_key_handler(/*int keysym, */t_map *map);
+int		ft_key_handler(t_map *map);
 void	ft_change_mnmap(char **map, t_player *player);
 int		ft_check_wall(char **map, t_player *player, int key);
-void	ft_move(t_map *map, t_player *player,int *keystate);
+
+// /////////////////////////  player_movement  /////////////////////////// //
+void	ft_move(t_map *map, t_player *player, int *keystate);
+
+// //////////////////////////  handler_movement  ////////////////////////// //
+void	left_mov(t_map *map, t_player *player);
+void	right_mov(t_map *map, t_player *player);
+void	front_mov(t_map *map, t_player *player);
+void	back_mov(t_map *map, t_player *player);
+void	rotation_player(t_map *map, t_player *player, double theta);
 
 // //////////////////////////////////  ray  //////////////////////////////// //
 void	ray_casting(t_ray *ray, t_player *player, t_map *map);

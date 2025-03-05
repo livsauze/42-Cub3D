@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: estepere <estepere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 12:33:03 by livsauze          #+#    #+#             */
-/*   Updated: 2025/02/20 15:09:18 by livsauze         ###   ########.fr       */
+/*   Updated: 2025/03/05 22:43:01 by estepere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_calloc(int nmemb, int size)
 
 	len = nmemb * size;
 	if ((len / nmemb) != size)
-	return (NULL);
+		return (NULL);
 	s = (void *)malloc(len);
 	if (s == NULL)
 		return (NULL);

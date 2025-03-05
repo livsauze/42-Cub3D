@@ -1,4 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_struct.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: estepere <estepere@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/05 21:58:48 by estepere          #+#    #+#             */
+/*   Updated: 2025/03/05 22:01:11 by estepere         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3D.h"
+
+void	ft_malloc_game(t_map *map)
+{
+	map->t = malloc(sizeof(t_text));
+	map->mini = malloc(sizeof(t_minimap));
+	map->img = malloc(sizeof(t_img));
+	map->t->wall_no = malloc(sizeof(t_img));
+	map->t->wall_so = malloc(sizeof(t_img));
+	map->t->wall_we = malloc(sizeof(t_img));
+	map->t->wall_ea = malloc(sizeof(t_img));
+	map->mini->mnmap = malloc(sizeof(t_img));
+	init_data(map);
+}
 
 void	ft_clean_init_data(t_map *map)
 {

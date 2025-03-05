@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: estepere <estepere@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/05 22:37:00 by estepere          #+#    #+#             */
+/*   Updated: 2025/03/05 22:37:33 by estepere         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3D.h"
 
 void	ft_err(char *str, t_map *map)
@@ -28,6 +40,7 @@ void	ft_free_all(t_map *map)
 	if (map->map)
 		ft_free_tab(map->map);
 }
+
 void	ft_free_img(t_text *texture)
 {
 	if (texture->wall_no)
