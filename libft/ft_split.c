@@ -6,7 +6,7 @@
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 09:32:21 by livsauze          #+#    #+#             */
-/*   Updated: 2024/11/05 13:58:31 by livsauze         ###   ########.fr       */
+/*   Updated: 2025/03/05 17:57:30 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	**ft_split(char const *s, char c)
 	{
 		if (s[i] != c)
 		{
-			str[j] = ft_substr(s, i, ft_lenwords(&s[i], c));
+			str[j] = ft_substr(s, i, ft_lenwords(s + i, c));
 			if (!str[j])
 				return (ft_free(str, j - 1));
 			i = i + ft_lenwords(&s[i], c);

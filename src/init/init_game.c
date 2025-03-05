@@ -31,7 +31,7 @@ void	init_key_states(t_map *map)
 	int	i;
 
 	i = 0;
-	while(i < 256)
+	while (i < 8)
 	{
 		map->key_states[i] = 0;
 		i++;
@@ -44,6 +44,7 @@ void	ft_start_game(t_map *map)
 	ft_window_init(map);
 	init_key_states(map);
 	ft_init_textures(map, map->t, map->mini->mnmap);
+	ft_events_init(map);
 	mlx_loop_hook(map->mlx, ft_hook, map);
 	mlx_loop(map->mlx);
 }

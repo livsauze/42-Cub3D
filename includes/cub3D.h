@@ -101,7 +101,7 @@ typedef struct s_map
 	int			map_y;
 	int			err;
 	int			fd;
-	int			key_states[256];
+	int			key_states[8];
 	int			ceiling[3];
 	int			floor[3];
 	char		**map;
@@ -142,6 +142,7 @@ void	ft_get_text(t_map *map, char *line);
 int		ft_empty_line(char *str);
 int		ft_tab_len(char **str);
 int		len_map_width(char **map);
+int	convert_key(int key);
 long	ft_convert_rgb(int r, int g, int b);
 void	ft_err(char *str, t_map *map);
 void	ft_free_tab(char **str);
@@ -168,10 +169,7 @@ void	ft_events_init(t_map *map);
 int		ft_key_handler(/*int keysym, */t_map *map);
 void	ft_change_mnmap(char **map, t_player *player);
 int		ft_check_wall(char **map, t_player *player, int key);
-void	ft_move(t_map *map, t_player *player);
-void	rotation_player(t_map *map, t_player *player, double theta);
-void	front_mov(t_map *map, t_player *player);
-void	side_mov(t_map *map, t_player *player);
+void	ft_move(t_map *map, t_player *player,int *keystate, int keypressed);
 
 // //////////////////////////////////  ray  //////////////////////////////// //
 void	ray_casting(t_ray *ray, t_player *player, t_map *map);

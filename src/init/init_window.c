@@ -21,5 +21,4 @@ void	ft_window_init(t_map *map)
 	map->img->img = mlx_new_image(map->mlx, WIDTH, HEIGHT);
 	map->img->addr = mlx_get_data_addr(map->img->img, &map->img->bpp,
 			&map->img->line_len, &map->img->endian);
-	ft_events_init(map);
 }

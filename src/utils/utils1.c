@@ -53,3 +53,22 @@ int	len_map_width(char **map)
 	}
 	return(max_width);
 }
+
+int	convert_key(int key)
+{
+	if (key == UP)
+		return (0);
+	else if (key == LEFT)
+		return (1);
+	else if (key == DOWN)
+		return (2);
+	else if (key == RIGHT)
+		return (3);
+	else if (key == XK_Left)
+		return (4);
+	else if (key == XK_Right)
+		return (5);
+	else if (key == XK_Escape)
+		return (6);
+	return (-1);
+}

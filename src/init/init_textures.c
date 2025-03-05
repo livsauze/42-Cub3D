@@ -12,8 +12,8 @@ void	ft_store_t_pixels(t_img *img, int *wall)
 		x = -1;
 		while (++x < img->width)
 		{
-			index = img->height * y + x;
-			wall[index] = (int)img->addr[index];
+			index = img->width * y + x;
+			wall[index] = *(int *)(img->addr + (y * img->line_len + x * (img->bpp / 8)));
 		}
 	}
 }
@@ -29,6 +29,7 @@ t_img	*ft_convert_img(t_map *map, t_img *img, char *path)
 		ft_err("Mlx\n", map);
 	img->wall = (int *)malloc(sizeof(int) * img->width * img->height);
 	ft_store_t_pixels(img, img->wall);
+	mlx_destroy_image(map->mlx, img->img);
 	return (img);
 }
 
