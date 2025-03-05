@@ -19,13 +19,6 @@ void	ft_window_init(t_map *map)
 		ft_malloc_error();
 	}
 	map->img->img = mlx_new_image(map->mlx, WIDTH, HEIGHT);
-	// if (map->img->img == NULL)
-	// {
-	// 	mlx_destroy_window(map->mlx, map->window);
-	// 	mlx_destroy_display(map->mlx);
-	// 	free(map->mlx);
-	// 	ft_malloc_error();
-	// }
 	map->img->addr = mlx_get_data_addr(map->img->img, &map->img->bpp,
 			&map->img->line_len, &map->img->endian);
 	ft_events_init(map);
