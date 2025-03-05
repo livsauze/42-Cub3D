@@ -41,43 +41,13 @@ int	hit_the_wall(t_map *map, double new_x, double new_y)
 	return(0);
 
 }
-
-void	front_mov(t_map *map, t_player *player, int keypressed)
+void	back_mov(t_map *map, t_player *player)
 {
 	double	new_x;
 	double	new_y;
 
-	if (keypressed == 0) // Avancer
-	{
-		new_x = player->pos_x + player->dir_x * MOV_PLAYER;
-		new_y = player->pos_y + player->dir_y * MOV_PLAYER;
-	}
-	else // Reculer
-	{
-		new_x = player->pos_x - player->dir_x * MOV_PLAYER;
-		new_y = player->pos_y - player->dir_y * MOV_PLAYER;
-	}
-	if (hit_the_wall(map, new_x, new_y) == 0) 
-	{
-		player->pos_x = new_x;
-		player->pos_y = new_y;
-	}
-}
-void	side_mov(t_map *map, t_player *player, int keypressed)
-{
-	double	new_x;
-	double	new_y;
-
-	if (keypressed == 3) // Déplacement latéral à droite
-	{
-		new_x = player->pos_x + map->ray->plane_x * MOV_PLAYER;
-		new_y = player->pos_y + map->ray->plane_y * MOV_PLAYER;
-	}
-	else // Déplacement latéral à gauche
-	{
-		new_x = player->pos_x - map->ray->plane_x * MOV_PLAYER;
-		new_y = player->pos_y - map->ray->plane_y * MOV_PLAYER;
-	}
+	new_x = player->pos_x - player->dir_x * MOV_PLAYER;
+	new_y = player->pos_y - player->dir_y * MOV_PLAYER;
 	if (hit_the_wall(map, new_x, new_y) == 0) 
 	{
 		player->pos_x = new_x;
@@ -85,16 +55,63 @@ void	side_mov(t_map *map, t_player *player, int keypressed)
 	}
 }
 
-void	ft_move(t_map *map, t_player *player, int *keystate, int keypressed)
+void	front_mov(t_map *map, t_player *player)
+{
+	double	new_x;
+	double	new_y;
+
+	new_x = player->pos_x + player->dir_x * MOV_PLAYER;
+	new_y = player->pos_y + player->dir_y * MOV_PLAYER;
+	if (hit_the_wall(map, new_x, new_y) == 0) 
+	{
+		player->pos_x = new_x;
+		player->pos_y = new_y;
+	}
+}
+
+void	right_mov(t_map *map, t_player *player)
+{
+	double	new_x;
+	double	new_y;
+
+	new_x = player->pos_x + map->ray->plane_x * MOV_PLAYER;
+	new_y = player->pos_y + map->ray->plane_y * MOV_PLAYER;
+	if (hit_the_wall(map, new_x, new_y) == 0) 
+	{
+		player->pos_x = new_x;
+		player->pos_y = new_y;
+	}
+}
+
+void	left_mov(t_map *map, t_player *player)
+{
+	double	new_x;
+	double	new_y;
+
+	new_x = player->pos_x - map->ray->plane_x * MOV_PLAYER;
+	new_y = player->pos_y - map->ray->plane_y * MOV_PLAYER;
+
+	if (hit_the_wall(map, new_x, new_y) == 0) 
+	{
+		player->pos_x = new_x;
+		player->pos_y = new_y;
+	}
+}
+
+void	ft_move(t_map *map, t_player *player, int *keystate)
 {
 	if (keystate[4] == 1)
 		rotation_player(map, player, -ROT_SPEED);
 	if (keystate[5] == 1)
 		rotation_player(map, player, ROT_SPEED);
-	if (keystate[0] == 1 || keystate[2] == 1)
-		front_mov(map, player, keypressed);
-	if (keystate[1] == 1 || keystate[3] == 1)
-		side_mov(map, player, keypressed);	
+	if (keystate[0] == 1)
+		front_mov(map, player);
+	if (keystate[2] == 1)
+		back_mov(map, player);
+	if (keystate[1] == 1)
+		left_mov(map, player);	
+	if (keystate[3] == 1)
+		right_mov(map, player);	
 	if (keystate[6] == 1)
 		ft_close_handler(map);
 	ft_change_mnmap(map->map, map->player);

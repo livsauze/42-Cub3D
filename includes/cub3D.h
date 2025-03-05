@@ -169,7 +169,7 @@ void	ft_events_init(t_map *map);
 int		ft_key_handler(/*int keysym, */t_map *map);
 void	ft_change_mnmap(char **map, t_player *player);
 int		ft_check_wall(char **map, t_player *player, int key);
-void	ft_move(t_map *map, t_player *player,int *keystate, int keypressed);
+void	ft_move(t_map *map, t_player *player,int *keystate);
 
 // //////////////////////////////////  ray  //////////////////////////////// //
 void	ray_casting(t_ray *ray, t_player *player, t_map *map);

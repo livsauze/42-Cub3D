@@ -19,7 +19,7 @@ int	ft_hook(t_map *map)
 
 	key_pressed = check_key(map->key_states);
 	if (key_pressed >= 0)
-		ft_move(map, map->player, map->key_states, key_pressed);
+		ft_move(map, map->player, map->key_states);
 	ft_draw_bckg(map, map->img);
 	ray_casting(map->ray, map->player, map);
 	ft_minimap(map, map->mini);
