@@ -22,8 +22,8 @@
 # define LEFT 97
 # define RIGHT 100
 
-# define ROT_SPEED 0.1
-# define MOV_PLAYER 0.1
+# define ROT_SPEED 0.01
+# define MOV_PLAYER 0.01
 # define FOV_ANGLE 0.66
 # define COLLISION_MARGIN 0.2
 
@@ -98,6 +98,7 @@ typedef	struct	s_ray
 
 typedef struct s_map
 {
+	int			key_states[256];
 	int			max_w;
 	int			max_h;
 	int			map_width;
@@ -170,13 +171,13 @@ void	ft_malloc_error(void);
 // ///////////////////////////////  events  /////////////////////////////// //
 int		ft_close_handler(t_map *map);
 void	ft_events_init(t_map *map);
-int		ft_key_handler(int keysym, t_map *map);
+int		ft_key_handler(/*int keysym, */t_map *map);
 void	ft_change_mnmap(char **map, t_player *player);
 int		ft_check_wall(char **map, t_player *player, int key);
-void	ft_move(t_map *map, t_player *player, int key);
+void	ft_move(t_map *map, t_player *player/*, int key*/);
 void	rotation_player(t_map *map, t_player *player, double theta);
-void	front_mov(t_map *map, t_player *player, int key);
-void	side_mov(t_map *map, t_player *player, int key);
+void	front_mov(t_map *map, t_player *player/*, int key*/);
+void	side_mov(t_map *map, t_player *player/*, int key*/);
 
 // //////////////////////////////////  ray  //////////////////////////////// //
 void	ray_casting(t_ray *ray, t_player *player, t_map *map);

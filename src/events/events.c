@@ -33,20 +33,35 @@ int	ft_close_handler(t_map *map)
 	return (0);
 }
 
+int	key_press(int keycode, t_map *map)
+{
+	map->key_states[keycode] = 1;
+	return (0);
+}
+int	key_release(int keycode, t_map *map)
+{
+	map->key_states[keycode] = 0;
+	return (0);
+}
+
 void	ft_events_init(t_map *map)
 {
-	mlx_hook(map->window, KeyPress, KeyPressMask, ft_key_handler, map);
+	mlx_hook(map->window, KeyPress, KeyPressMask, key_press, map);
+	mlx_hook(map->window, KeyRelease, KeyReleaseMask, key_release, map);
+
+
+	// mlx_hook(map->window, KeyPress, KeyPressMask, ft_key_handler, map);
 	mlx_hook(map->window, 17, (1L << 17), ft_close_handler, map);
 }
 
-int	ft_key_handler(int keysym, t_map *map)
-{
-	if (keysym == XK_Escape)
-	{
-		ft_close_handler(map);
-	}
-	else if (keysym == UP || keysym == DOWN || keysym == LEFT
-		|| keysym == RIGHT || keysym == XK_Left || keysym == XK_Right)
-		ft_move(map, map->player, keysym);
-	return (0);
-}
+// int	ft_key_handler(/*int keysym, */t_map *map)
+// {
+// 	if (map->key_states == XK_Escape)
+// 	{
+// 		ft_close_handler(map);
+// 	}
+// 	else if (map->key_states == UP || map->key_states == DOWN || map->key_states == LEFT
+// 		|| map->key_states == RIGHT || map->key_states == XK_Left || map->key_states == XK_Right)
+// 		ft_move(map, map->player/*, keysym*/);
+// 	return (0);
+// }
