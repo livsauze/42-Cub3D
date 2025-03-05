@@ -29,15 +29,9 @@
 
 # define BLACK 0x000000
 # define WHITE 0xFFFFFF
-# define BROWN 0xA52A2A
-# define GREY 0x808080
-# define BEIGE 0xF5F5DC
-# define BRICK 0xB22222
-# define WOOD 0xA0522D
 # define RED 0xFF0000
 # define GREEN 0x00FF00
 # define CYAN 0x00FFFF
-# define MAGENTA 0xFF00FF
 
 typedef struct s_img
 {
@@ -98,7 +92,6 @@ typedef	struct	s_ray
 
 typedef struct s_map
 {
-	int			key_states[256];
 	int			max_w;
 	int			max_h;
 	int			map_width;
@@ -108,6 +101,7 @@ typedef struct s_map
 	int			map_y;
 	int			err;
 	int			fd;
+	int			key_states[256];
 	int			ceiling[3];
 	int			floor[3];
 	char		**map;
