@@ -11,8 +11,8 @@
 # include <X11/X.h>
 # include "../minilibx-linux/mlx.h"
 
-# define WIDTH 800
-# define HEIGHT 500
+# define WIDTH 1800
+# define HEIGHT 1200
 # define MINIW 180
 # define MINIH 80
 # define TILE_SIZE 64
@@ -22,8 +22,8 @@
 # define LEFT 97
 # define RIGHT 100
 
-# define ROT_SPEED 0.015
-# define MOV_PLAYER 0.01
+# define ROT_SPEED 0.07
+# define MOV_PLAYER 0.08
 # define FOV_ANGLE 0.66
 # define COLLISION_MARGIN 0.2
 
