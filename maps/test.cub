@@ -1,9 +1,9 @@
-EA ./textures/wall1.xpm
-NO ./textures/wall2.xpm
-SO ./textures/wall3.xpm
-WE ./textures/wall4.xpm
-C 56,232,235
-F 82,235,52
+EA ./textures/gru.xpm
+NO ./textures/chock.xpm
+SO ./textures/hamster.xpm
+WE ./textures/dog3.xpm
+C 169, 169, 169
+F 133, 94, 66
 
         1111111111111111111111111
         1000000000110000000000001
