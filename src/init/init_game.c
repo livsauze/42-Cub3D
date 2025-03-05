@@ -26,11 +26,23 @@ void	ft_malloc_game(t_map *map)
 }
 
 
+void	init_key_states(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while(i < 256)
+	{
+		map->key_states[i] = 0;
+		i++;
+	}
+}
+
 void	ft_start_game(t_map *map)
 {
 	ft_malloc_game(map);
 	ft_window_init(map);
-	// mlx_do_key_autorepeaton(map->mlx); to do
+	init_key_states(map);
 	ft_init_textures(map, map->t, map->mini->mnmap);
 	mlx_loop_hook(map->mlx, ft_hook, map);
 	mlx_loop(map->mlx);

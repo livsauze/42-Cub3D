@@ -42,12 +42,12 @@ int	hit_the_wall(t_map *map, double new_x, double new_y)
 
 }
 
-void	front_mov(t_map *map, t_player *player, int key)
+void	front_mov(t_map *map, t_player *player)
 {
 	double	new_x;
 	double	new_y;
 
-	if (key == XK_w) // Avancer
+	if (map->key_states[UP] == 1) // Avancer
 	{
 		new_x = player->pos_x + player->dir_x * MOV_PLAYER;
 		new_y = player->pos_y + player->dir_y * MOV_PLAYER;
@@ -63,12 +63,12 @@ void	front_mov(t_map *map, t_player *player, int key)
 		player->pos_y = new_y;
 	}
 }
-void	side_mov(t_map *map, t_player *player, int key)
+void	side_mov(t_map *map, t_player *player)
 {
 	double	new_x;
 	double	new_y;
 
-	if (key == XK_d) // Déplacement latéral à droite
+	if (map->key_states[RIGHT] == 1) // Déplacement latéral à droite
 	{
 		new_x = player->pos_x + map->ray->plane_x * MOV_PLAYER;
 		new_y = player->pos_y + map->ray->plane_y * MOV_PLAYER;
@@ -85,15 +85,17 @@ void	side_mov(t_map *map, t_player *player, int key)
 	}
 }
 
-void	ft_move(t_map *map, t_player *player, int key)
+void	ft_move(t_map *map, t_player *player)
 {
-	if (key == XK_Left)
+	if (map->key_states[XK_Left] == 1)
 		rotation_player(map, player, -ROT_SPEED);
-	else if (key == XK_Right)
+	else if (map->key_states[XK_Right] == 1)
 		rotation_player(map, player, ROT_SPEED);
-	else if ((key == UP || key == DOWN))
-		front_mov(map, player, key);
-	else if ((key == LEFT || key == RIGHT))
-		side_mov(map, player, key);	
+	else if ((map->key_states[UP] == 1 || map->key_states[DOWN] == 1))
+		front_mov(map, player);
+	else if ((map->key_states[LEFT] == 1 || map->key_states[RIGHT] == 1))
+		side_mov(map, player);	
+	else if (map->key_states[XK_Escape] == 1)
+		ft_close_handler(map);
 	ft_change_mnmap(map->map, map->player);
 }
