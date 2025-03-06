@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils1.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: estepere <estepere@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/05 22:37:15 by estepere          #+#    #+#             */
+/*   Updated: 2025/03/05 22:38:05 by estepere         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3D.h"
 
 void	ft_free_tab(char **str)
@@ -43,15 +55,14 @@ int	len_map_width(char **map)
 
 	max_width = 0;
 	i = 0;
-	
-	while(map[i])
+	while (map[i])
 	{
 		len = ft_strlen(map[i]);
 		if (len > max_width)
 			max_width = len;
 		i++;
 	}
-	return(max_width);
+	return (max_width);
 }
 
 int	convert_key(int key)

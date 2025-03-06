@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_text.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/05 22:05:14 by estepere          #+#    #+#             */
+/*   Updated: 2025/03/06 20:12:18 by livsauze         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3D.h"
 
 void	ft_get_so(t_map *map, char *line, int i)
@@ -11,7 +23,7 @@ void	ft_get_so(t_map *map, char *line, int i)
 	while (line[i] && (line[i] == '\t' || line[i] == ' '))
 		i++;
 	map->so = ft_substr(line, i, ft_strlen(line + i) - 1);
-	if (open(map->so, O_RDONLY) == -1)
+	if (ft_check_ext(map->so, "xpm") || open(map->so, O_RDONLY) == -1)
 		ft_err("Textures SO : cannot open file\n", map);
 }
 
@@ -26,7 +38,7 @@ void	ft_get_no(t_map *map, char *line, int i)
 	while (line[i] && (line[i] == '\t' || line[i] == ' '))
 		i++;
 	map->no = ft_substr(line, i, ft_strlen(line + i) - 1);
-	if (open(map->no, O_RDONLY) == -1)
+	if (ft_check_ext(map->no, "xpm") || open(map->no, O_RDONLY) == -1)
 		ft_err("Textures NO : cannot open file\n", map);
 }
 
@@ -41,7 +53,7 @@ void	ft_get_we(t_map *map, char *line, int i)
 	while (line[i] && (line[i] == '\t' || line[i] == ' '))
 		i++;
 	map->we = ft_substr(line, i, ft_strlen(line + i) - 1);
-	if (open(map->we, O_RDONLY) == -1)
+	if (ft_check_ext(map->we, "xpm") || open(map->we, O_RDONLY) == -1)
 		ft_err("Textures WE : cannot open file\n", map);
 }
 
@@ -56,7 +68,7 @@ void	ft_get_ea(t_map *map, char *line, int i)
 	while (line[i] && (line[i] == '\t' || line[i] == ' '))
 		i++;
 	map->ea = ft_substr(line, i, ft_strlen(line + i) - 1);
-	if (open(map->ea, O_RDONLY) == -1)
+	if (ft_check_ext(map->ea, "xpm") || open(map->ea, O_RDONLY) == -1)
 		ft_err("Textures EA : cannot open file\n", map);
 }
 

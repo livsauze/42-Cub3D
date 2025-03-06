@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_textures.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/05 22:01:53 by estepere          #+#    #+#             */
+/*   Updated: 2025/03/06 17:37:18 by livsauze         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3D.h"
 
 void	ft_store_t_pixels(t_img *img, int *wall)
@@ -13,7 +25,8 @@ void	ft_store_t_pixels(t_img *img, int *wall)
 		while (++x < img->width)
 		{
 			index = img->width * y + x;
-			wall[index] = *(int *)(img->addr + (y * img->line_len + x * (img->bpp / 8)));
+			wall[index] = *(int *)(img->addr
+					+ (y * img->line_len + x * (img->bpp / 8)));
 		}
 	}
 }
@@ -22,11 +35,17 @@ t_img	*ft_convert_img(t_map *map, t_img *img, char *path)
 {
 	img->img = mlx_xpm_file_to_image(map->mlx, path, &img->width, &img->height);
 	if (!img->img)
+	{
 		ft_err("Texture : invalid texture\n", map);
+		ft_close_handler(map);
+	}
 	img->addr = mlx_get_data_addr(img->img, &img->bpp,
 			&img->line_len, &img->endian);
 	if (!img->addr)
+	{
 		ft_err("Mlx\n", map);
+		ft_close_handler(map);
+	}
 	img->wall = (int *)malloc(sizeof(int) * img->width * img->height);
 	ft_store_t_pixels(img, img->wall);
 	mlx_destroy_image(map->mlx, img->img);

@@ -1,4 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_struct.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/05 21:58:48 by estepere          #+#    #+#             */
+/*   Updated: 2025/03/06 17:49:04 by livsauze         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3D.h"
+
+void	ft_malloc_game(t_map *map)
+{
+	map->t = malloc(sizeof(t_text));
+	map->mini = malloc(sizeof(t_minimap));
+	map->img = malloc(sizeof(t_img));
+	map->t->wall_no = malloc(sizeof(t_img));
+	map->t->wall_so = malloc(sizeof(t_img));
+	map->t->wall_we = malloc(sizeof(t_img));
+	map->t->wall_ea = malloc(sizeof(t_img));
+	map->mini->mnmap = malloc(sizeof(t_img));
+	map->t->wall_no->img = NULL;
+	map->t->wall_so->img = NULL;
+	map->t->wall_ea->img = NULL;
+	map->t->wall_we->img = NULL;
+	map->t->wall_no->wall = NULL;
+	map->t->wall_so->wall = NULL;
+	map->t->wall_ea->wall = NULL;
+	map->t->wall_we->wall = NULL;
+	map->mini->mnmap->img = NULL;
+	init_data(map);
+}
 
 void	ft_clean_init_data(t_map *map)
 {
@@ -27,6 +61,7 @@ t_map	*ft_clean_init_struct(t_map *map)
 {
 	ft_clean_init_data(map);
 	map->map = NULL;
+	map->img = NULL;
 	map->window = NULL;
 	map->mlx = NULL;
 	map->player = NULL;
