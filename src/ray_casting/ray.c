@@ -6,7 +6,7 @@
 /*   By: estepere <estepere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 22:05:47 by estepere          #+#    #+#             */
-/*   Updated: 2025/03/05 22:10:24 by estepere         ###   ########.fr       */
+/*   Updated: 2025/03/06 21:52:24 by estepere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	dda_algo(t_ray *ray, t_player *player, t_map *map, int x)
 	{
 		if (ray->side_dist_x < ray->side_dist_y)
 		{
-			ray->side_dist_x += ray->delta_dist_x;
-			map->map_x += ray->step_x;
+			ray->side_dist_x += ray->delta_dist_x; // move to x*square of delta_x
+			map->map_x += ray->step_x; // update of the curr ray in the grid
 			ray->side_wall = 0;
 		}
 		else
