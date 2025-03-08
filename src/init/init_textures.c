@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: estepere <estepere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 22:01:53 by estepere          #+#    #+#             */
-/*   Updated: 2025/03/05 22:02:11 by estepere         ###   ########.fr       */
+/*   Updated: 2025/03/06 17:37:18 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,17 @@ t_img	*ft_convert_img(t_map *map, t_img *img, char *path)
 {
 	img->img = mlx_xpm_file_to_image(map->mlx, path, &img->width, &img->height);
 	if (!img->img)
+	{
 		ft_err("Texture : invalid texture\n", map);
+		ft_close_handler(map);
+	}
 	img->addr = mlx_get_data_addr(img->img, &img->bpp,
 			&img->line_len, &img->endian);
 	if (!img->addr)
+	{
 		ft_err("Mlx\n", map);
+		ft_close_handler(map);
+	}
 	img->wall = (int *)malloc(sizeof(int) * img->width * img->height);
 	ft_store_t_pixels(img, img->wall);
 	mlx_destroy_image(map->mlx, img->img);

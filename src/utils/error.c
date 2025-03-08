@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: estepere <estepere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 22:37:00 by estepere          #+#    #+#             */
-/*   Updated: 2025/03/05 22:37:33 by estepere         ###   ########.fr       */
+/*   Updated: 2025/03/06 17:47:12 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,41 +41,34 @@ void	ft_free_all(t_map *map)
 		ft_free_tab(map->map);
 }
 
-void	ft_free_img(t_text *texture)
+void	ft_free_img(t_img *img1, t_img *img2)
 {
-	if (texture->wall_no)
+	if (img1)
 	{
-		free(texture->wall_no->wall);
-		free(texture->wall_no);
+		if (img1->wall)
+			free(img1->wall);
+		free(img1);
 	}
-	if (texture->wall_so)
+	if (img2)
 	{
-		free(texture->wall_so->wall);
-		free(texture->wall_so);
-	}
-	if (texture->wall_we)
-	{
-		free(texture->wall_we->wall);
-		free(texture->wall_we);
-	}
-	if (texture->wall_ea)
-	{
-		free(texture->wall_ea->wall);
-		free(texture->wall_ea);
+		if (img2->wall)
+			free(img2->wall);
+		free(img2);
 	}
 }
 
 void	ft_end(t_map *map)
 {
-	ft_free_all(map);
 	if (map->player)
 		free(map->player);
 	if (map->ray)
 		free(map->ray);
 	if (map->t)
 	{
-		ft_free_img(map->t);
+		ft_free_img(map->t->wall_no, map->t->wall_so);
+		ft_free_img(map->t->wall_ea, map->t->wall_we);
 		free(map->t);
 	}
+	ft_free_all(map);
 	close(map->fd);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: estepere <estepere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 22:38:29 by estepere          #+#    #+#             */
-/*   Updated: 2025/03/05 22:41:49 by estepere         ###   ########.fr       */
+/*   Updated: 2025/03/06 20:25:17 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 # define RED 0xFF0000
 # define GREEN 0x00FF00
 # define CYAN 0x00FFFF
+# define DARK_BLUE 0x00008B
 
 typedef struct s_img
 {
@@ -143,7 +144,7 @@ void	ft_malloc_game(t_map *map);
 int		ft_hook(t_map *map);
 
 /***********************************CHECK***********************************/
-int		ft_check_ext(char *file);
+int		ft_check_ext(char *file, char *str);
 int		ft_map_unclosed(t_map *map, int x, int y);
 
 /***********************************GET_MAP*********************************/

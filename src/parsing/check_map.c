@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: estepere <estepere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 22:04:36 by estepere          #+#    #+#             */
-/*   Updated: 2025/03/05 22:04:37 by estepere         ###   ########.fr       */
+/*   Updated: 2025/03/06 17:45:27 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,11 @@ t_map	*ft_get_map(t_map *map)
 		line = get_next_line(map->fd);
 	}
 	if (map->err > 0)
-		return (map);
+		return (free(line), map);
 	else if (ft_check_struct(map) == 1 || !line)
 	{
 		ft_err("The .cub file is not complete\n", map);
-		return (map);
+		return (free(line), map);
 	}
 	ft_parse_map(map, line);
 	return (map);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: estepere <estepere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 22:02:54 by estepere          #+#    #+#             */
-/*   Updated: 2025/03/05 22:04:10 by estepere         ###   ########.fr       */
+/*   Updated: 2025/03/06 18:03:57 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_color(t_map *map, int pos_x, int pos_y)
 	else if (map->map[pos_y][pos_x] == '0')
 		color = WHITE;
 	else if (map->map[pos_y][pos_x] == 'P')
-		color = GREEN;
+		color = DARK_BLUE;
 	else
 		color = BLACK;
 	return (color);

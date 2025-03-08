@@ -3,27 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: estepere <estepere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 21:47:05 by estepere          #+#    #+#             */
-/*   Updated: 2025/03/05 21:47:36 by estepere         ###   ########.fr       */
+/*   Updated: 2025/03/06 17:26:17 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void	ft_destroy_img(t_map *map, t_text *texture)
+void	ft_destroy_img(t_map *map)
 {
-	(void)texture;
 	if (map->img->img)
 		mlx_destroy_image(map->mlx, map->img->img);
-	if (map->mini->mnmap)
+	if (map->mini->mnmap->img)
 		mlx_destroy_image(map->mlx, map->mini->mnmap->img);
 }
 
 int	ft_close_handler(t_map *map)
 {
-	ft_destroy_img(map, map->t);
+	ft_destroy_img(map);
 	ft_end(map);
 	if (map->window)
 		mlx_destroy_window(map->mlx, map->window);
